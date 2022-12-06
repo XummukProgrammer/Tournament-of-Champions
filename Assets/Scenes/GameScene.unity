@@ -158,6 +158,7 @@ MonoBehaviour:
     _elements:
     - _id: Target_1
       _position: {fileID: 1485827412}
+  _camera: {fileID: 519420031}
 --- !u!4 &361338018
 Transform:
   m_ObjectHideFlags: 0
