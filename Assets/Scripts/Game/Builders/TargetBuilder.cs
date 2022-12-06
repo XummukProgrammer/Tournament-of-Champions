@@ -20,7 +20,7 @@ public class TargetBuilder
             if (asset != null)
             {
                 var controller = new Target();
-                controller.Init(_container, asset.Prefab, element.Position);
+                controller.Init(_container, asset.Prefab, element.Position, asset.HitSound);
                 _controllers.Add(controller);
             }
         }

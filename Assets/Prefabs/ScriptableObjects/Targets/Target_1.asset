@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: Target_1
   _prefab: {fileID: 3834521392482097685, guid: 2f48b8164bcd4a643bdd6f13b6fdf713, type: 3}
+  _hitSound: {fileID: 8300000, guid: 952a20da02327884499427a481a1c824, type: 3}
