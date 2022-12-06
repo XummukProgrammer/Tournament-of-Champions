@@ -1,19 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Target
 {
     private TargetBehaviour _behaviour;
     private HealthAttribute _healthAttribute = new HealthAttribute();
-    private AudioClip _hitSound;
+    private AudioClip[] _hitSounds;
 
-    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip hitSound)
+    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
         _behaviour.Init(this);
 
-        _healthAttribute.GiveValue(2);
+        _healthAttribute.GiveValue(999);
 
-        _hitSound = hitSound;
+        _hitSounds = hitSounds;
     }
 
     public void Destroy()
@@ -28,7 +29,9 @@ public class Target
     public void Hit()
     {
         _healthAttribute.TakeValue(1);
-        AudioSource.PlayClipAtPoint(_hitSound, _behaviour.transform.position);
+
+        var randomHitSound = _hitSounds[Random.Range(0, _hitSounds.Length)];
+        AudioSource.PlayClipAtPoint(randomHitSound, _behaviour.transform.position);
     }
 
     public bool IsDied()
