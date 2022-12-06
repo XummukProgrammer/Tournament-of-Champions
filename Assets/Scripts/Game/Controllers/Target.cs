@@ -7,16 +7,19 @@ public class Target
     private HealthAttribute _healthAttribute = new HealthAttribute();
     private AudioClip[] _hitSounds;
     private AudioClip _explosionSound;
+    private ParticleSystem _hitParticle;
 
-    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound)
+    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
         _behaviour.Init(this);
 
-        _healthAttribute.GiveValue(5);
+        _healthAttribute.GiveValue(20);
 
         _hitSounds = hitSounds;
         _explosionSound = explosionSound;
+
+        _hitParticle = GameObject.Instantiate(hitParticle, _behaviour.transform.position, Quaternion.identity, _behaviour.transform);
     }
 
     public void Destroy()
@@ -39,6 +42,8 @@ public class Target
         {
             AudioSource.PlayClipAtPoint(_explosionSound, _behaviour.transform.position);
         }
+
+        _hitParticle.Play();
     }
 
     public bool IsDied()
