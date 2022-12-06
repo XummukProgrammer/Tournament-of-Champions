@@ -36,4 +36,10 @@ public class Game
         }
         return null;
     }
+
+    public void DestroyTarget(Target controller)
+    {
+        controller.Destroy();
+        _targetBuilder.DestroyController(controller);
+    }
 }

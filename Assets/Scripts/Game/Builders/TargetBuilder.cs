@@ -25,4 +25,9 @@ public class TargetBuilder
             }
         }
     }
+
+    public void DestroyController(Target controller)
+    {
+        _controllers.Remove(controller);
+    }
 }

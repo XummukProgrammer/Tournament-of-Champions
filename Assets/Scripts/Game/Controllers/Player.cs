@@ -22,7 +22,12 @@ public class Player
         var targetController = _game.GetTargetInMouseArea();
         if (targetController != null)
         {
-            Debug.Log("Shot target!!!");
+            targetController.Hit();
+
+            if (targetController.IsDied())
+            {
+                _game.DestroyTarget(targetController);
+            }
         }
     }
 }
