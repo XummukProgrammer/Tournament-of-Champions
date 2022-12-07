@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Weapon
 {
+    public System.Action<int> AmmoChanged;
+
     private string _id;
     private int _damage;
     private int _ammo;
@@ -46,7 +48,7 @@ public class Weapon
         if (_currentAmmo > 0)
         {
             target.Hit(_damage);
-            --_currentAmmo;
+            SetCurrentAmmo(_currentAmmo - 1);
 
             if (_currentAmmo == 0)
             {
@@ -65,6 +67,12 @@ public class Weapon
 
     private void OnReloaded()
     {
-        _currentAmmo = _ammo;
+        SetCurrentAmmo(_ammo);
+    }
+
+    private void SetCurrentAmmo(int ammo)
+    {
+        _currentAmmo = ammo;
+        AmmoChanged?.Invoke(_currentAmmo);
     }
 }

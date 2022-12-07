@@ -5,10 +5,12 @@ public class Player
     private Game _game;
     private Weapon _weapon = new Weapon();
 
-    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay)
+    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, WeaponBehaviour weaponBehaviour)
     {
         _game = game;
         _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay);
+
+        weaponBehaviour.Init(_weapon);
     }
 
     public void Update()
