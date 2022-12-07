@@ -9,12 +9,12 @@ public class Target
     private AudioClip _explosionSound;
     private ParticleSystem _hitParticle;
 
-    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle)
+    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
         _behaviour.Init(this);
 
-        _healthAttribute.GiveValue(1);
+        _healthAttribute.GiveValue(healthValue);
 
         _hitSounds = hitSounds;
         _explosionSound = explosionSound;

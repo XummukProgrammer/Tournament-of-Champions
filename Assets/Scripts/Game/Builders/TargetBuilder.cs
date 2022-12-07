@@ -25,7 +25,7 @@ public class TargetBuilder
             if (asset != null)
             {
                 var controller = new Target();
-                controller.Init(_container, asset.Prefab, element.Position, asset.HitSounds, asset.ExplosionSound, asset.HitParticle);
+                controller.Init(_container, asset.Prefab, element.Position, asset.HitSounds, asset.ExplosionSound, asset.HitParticle, asset.HealthValue);
                 _controllers.Add(controller);
             }
         }
