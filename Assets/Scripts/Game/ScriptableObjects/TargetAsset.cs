@@ -8,7 +8,7 @@ public class TargetAsset : ScriptableObject, IStorageAsset
     [SerializeField] private AudioClip[] _hitSounds;
     [SerializeField] private AudioClip _explosionSound;
     [SerializeField] private ParticleSystem _hitParticle;
-    [SerializeField] private int _healthValue = 1;
+    [SerializeField] private int _healthValue;
 
     public string Id => _id;
     public TargetBehaviour Prefab => _prefab;

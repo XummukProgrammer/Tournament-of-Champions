@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target
+public class Target : IShotable
 {
     private TargetBehaviour _behaviour;
     private HealthAttribute _healthAttribute = new HealthAttribute();
