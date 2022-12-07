@@ -17,18 +17,24 @@ public class Game
 
     WeaponBehaviour _weaponBehaviour;
 
-    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, WeaponBehaviour weaponBehaviour)
+    DebugPanel _debugPanel = new DebugPanel();
+
+    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
 
+        _debugPanel.Init(debugPanelBehaviour);
+
         StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay);
     }
 
     public void Update()
     {
+        _debugPanel.Update();
+
         switch (_state)
         {
             case GameState.MainMenu:
@@ -80,7 +86,7 @@ public class Game
 
     private void ResetGame()
     {
-        _state = GameState.InProgress;
+        SetState(GameState.InProgress);
         _currentLevelChainNumber = -1;
     }
 
@@ -90,7 +96,7 @@ public class Game
 
         if (_currentLevelChainNumber >= _levelsChain.Length)
         {
-            _state = GameState.Win;
+            SetState(GameState.Win);
             Winned?.Invoke();
         }
         else
@@ -107,5 +113,11 @@ public class Game
         {
             IncrementLevelChain();
         }
+    }
+
+    private void SetState(GameState state)
+    {
+        _state = state;
+        _debugPanel.UpdateInfo("state", $"Стейт: {_state}");
     }
 }
