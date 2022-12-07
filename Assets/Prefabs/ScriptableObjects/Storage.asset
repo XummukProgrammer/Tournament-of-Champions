@@ -18,3 +18,4 @@ MonoBehaviour:
   _levelStorage:
     _assets:
     - {fileID: 11400000, guid: 134a6fb49e6a2e042a198832a47cb4fa, type: 2}
+    - {fileID: 11400000, guid: 9cdc7ef9d0dd74049b7579183df04339, type: 2}

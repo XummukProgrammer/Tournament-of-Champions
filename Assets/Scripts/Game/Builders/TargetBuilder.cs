@@ -6,15 +6,14 @@ public class TargetBuilder
 {
     [SerializeField] private Storage _storage;
     [SerializeField] Transform _container;
-    [SerializeField] string _levelId;
 
     List<Target> _controllers = new List<Target>();
 
     public List<Target> Controllers => _controllers;
 
-    public void Create()
+    public void Load(string levelId)
     {
-        var levelStorage = _storage.LevelStorage.GetAsset(_levelId);
+        var levelStorage = _storage.LevelStorage.GetAsset(levelId);
         if (levelStorage == null)
         {
             return;

@@ -14,7 +14,7 @@ public class Target
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
         _behaviour.Init(this);
 
-        _healthAttribute.GiveValue(20);
+        _healthAttribute.GiveValue(1);
 
         _hitSounds = hitSounds;
         _explosionSound = explosionSound;

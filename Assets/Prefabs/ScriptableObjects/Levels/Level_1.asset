@@ -16,5 +16,3 @@ MonoBehaviour:
   _elements:
   - _id: Target_1
     _position: {x: 0, y: 0, z: 0}
-  - _id: Target_1
-    _position: {x: 3, y: 0, z: 0}

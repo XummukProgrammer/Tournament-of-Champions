@@ -155,8 +155,8 @@ MonoBehaviour:
   _targetBuilder:
     _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
     _container: {fileID: 440728114}
-    _levelId: Level_1
   _camera: {fileID: 519420031}
+  _gameAsset: {fileID: 11400000, guid: c0de45e657b72244eb2a67932b968ffe, type: 2}
 --- !u!4 &361338018
 Transform:
   m_ObjectHideFlags: 0
