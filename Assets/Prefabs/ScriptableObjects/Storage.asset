@@ -15,3 +15,6 @@ MonoBehaviour:
   _targetStorage:
     _assets:
     - {fileID: 11400000, guid: c0434d88b9b951348a592ca28ec10784, type: 2}
+  _levelStorage:
+    _assets:
+    - {fileID: 11400000, guid: 134a6fb49e6a2e042a198832a47cb4fa, type: 2}

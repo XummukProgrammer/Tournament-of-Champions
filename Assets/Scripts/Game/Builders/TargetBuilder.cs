@@ -6,7 +6,7 @@ public class TargetBuilder
 {
     [SerializeField] private Storage _storage;
     [SerializeField] Transform _container;
-    [SerializeField] TargetBuilderElement[] _elements;
+    [SerializeField] string _levelId;
 
     List<Target> _controllers = new List<Target>();
 
@@ -14,7 +14,13 @@ public class TargetBuilder
 
     public void Create()
     {
-        foreach (var element in _elements)
+        var levelStorage = _storage.LevelStorage.GetAsset(_levelId);
+        if (levelStorage == null)
+        {
+            return;
+        }
+
+        foreach (var element in levelStorage.Elements)
         {
             var asset = _storage.TargetStorage.GetAsset(element.Id);
             if (asset != null)
