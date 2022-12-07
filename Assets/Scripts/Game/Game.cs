@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Game
 {
+    public System.Action<int> LevelChanged;
+
     string[] _levelsChain;
     int _currentLevelChainNumber = -1;
     string _currentLevelChainId;
@@ -90,6 +92,7 @@ public class Game
         {
             _currentLevelChainId = _levelsChain[_currentLevelChainNumber];
             _targetBuilder.Load(_currentLevelChainId);
+            LevelChanged?.Invoke(_currentLevelChainNumber);
         }
     }
 

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: Weapon_1
   _damage: 2
+  _ammo: 1
+  _reloadDelay: 2

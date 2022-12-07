@@ -7,6 +7,8 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
 
+    [SerializeField] private LevelNumberBehaviour _levelNumberBehaviour;
+
     Game _game = new Game();
 
     private void Start()
@@ -16,6 +18,8 @@ public class Launcher : MonoBehaviour
         {
             return;
         }
+
+        _levelNumberBehaviour.Init(_game);
 
         _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay);
     }
