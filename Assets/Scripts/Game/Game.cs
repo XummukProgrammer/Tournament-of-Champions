@@ -3,6 +3,7 @@ using UnityEngine;
 public class Game
 {
     public System.Action<int> LevelChanged;
+    public System.Action Winned;
 
     string[] _levelsChain;
     int _currentLevelChainNumber = -1;
@@ -90,6 +91,7 @@ public class Game
         if (_currentLevelChainNumber >= _levelsChain.Length)
         {
             _state = GameState.Win;
+            Winned?.Invoke();
         }
         else
         {
