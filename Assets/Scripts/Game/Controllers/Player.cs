@@ -5,14 +5,16 @@ public class Player
     private Game _game;
     private Weapon _weapon = new Weapon();
 
-    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo)
+    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay)
     {
         _game = game;
-        _weapon.Init(weaponId, weaponDamage, weaponAmmo);
+        _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay);
     }
 
     public void Update()
     {
+        _weapon.Update();
+
         if (Input.GetMouseButtonDown(0))
         {
             Shot();

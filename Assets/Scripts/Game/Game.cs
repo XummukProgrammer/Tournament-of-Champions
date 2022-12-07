@@ -12,13 +12,13 @@ public class Game
     Camera _camera;
     GameState _state;
 
-    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo)
+    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
 
-        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo);
+        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay);
     }
 
     public void Update()
@@ -64,9 +64,9 @@ public class Game
         _targetBuilder.DestroyController(controller);
     }
 
-    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo)
+    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay)
     {
-        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo);
+        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay);
 
         ResetGame();
         IncrementLevelChain();
