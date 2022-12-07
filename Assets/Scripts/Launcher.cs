@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviour
 {
+    [SerializeField] private Storage _storage;
     [SerializeField] private TargetBuilder _targetBuilder;
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
@@ -10,7 +11,13 @@ public class Launcher : MonoBehaviour
 
     private void Start()
     {
-        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain);
+        var playerWeaponAsset = _storage.WeaponStorage.GetAsset(_gameAsset.PlayerWeaponId);
+        if (playerWeaponAsset == null)
+        {
+            return;
+        }
+
+        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, playerWeaponAsset.Id, playerWeaponAsset.Damage);
     }
 
     private void Update()

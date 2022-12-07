@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcffe015987766542b0e54add0edabdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
   _targetBuilder:
     _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
     _container: {fileID: 440728114}

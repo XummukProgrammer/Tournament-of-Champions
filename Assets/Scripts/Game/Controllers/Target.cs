@@ -31,9 +31,9 @@ public class Target
         }
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
-        _healthAttribute.TakeValue(1);
+        _healthAttribute.TakeValue(damage);
 
         var randomHitSound = _hitSounds[Random.Range(0, _hitSounds.Length)];
         AudioSource.PlayClipAtPoint(randomHitSound, _behaviour.transform.position);

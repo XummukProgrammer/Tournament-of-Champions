@@ -19,3 +19,6 @@ MonoBehaviour:
     _assets:
     - {fileID: 11400000, guid: 134a6fb49e6a2e042a198832a47cb4fa, type: 2}
     - {fileID: 11400000, guid: 9cdc7ef9d0dd74049b7579183df04339, type: 2}
+  _weaponStorage:
+    _assets:
+    - {fileID: 11400000, guid: 069fb1a66df553a4a836dea9f7a44f94, type: 2}

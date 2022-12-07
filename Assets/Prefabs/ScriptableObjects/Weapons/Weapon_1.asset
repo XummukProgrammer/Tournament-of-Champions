@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae5f0be951fd5346b82f6642c128bb4, type: 3}
-  m_Name: Game
+  m_Script: {fileID: 11500000, guid: e65bd5e222c01cf45be8dc0c2e995a90, type: 3}
+  m_Name: Weapon_1
   m_EditorClassIdentifier: 
-  _levelsChain:
-  - Level_1
-  - Level_2
-  _playerWeaponId: Weapon_1
+  _id: Weapon_1
+  _damage: 2

@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class Player
 {
-    Game _game;
+    private Game _game;
+    private Weapon _weapon = new Weapon();
 
-    public void Init(Game game)
+    public void Init(Game game, string weaponId, int weaponDamage)
     {
         _game = game;
+        _weapon.Init(weaponId, weaponDamage);
     }
 
     public void Update()
@@ -22,7 +24,7 @@ public class Player
         var targetController = _game.GetTargetInMouseArea();
         if (targetController != null)
         {
-            targetController.Hit();
+            targetController.Hit(_weapon.Damage);
 
             if (targetController.IsDied())
             {
