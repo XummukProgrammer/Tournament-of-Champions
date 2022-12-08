@@ -27,7 +27,7 @@ public class Game
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
         Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
-        LoseTimerBehaviour loseTimerBehaviour, float startLoseTime)
+        LoseTimerBehaviour loseTimerBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
@@ -35,7 +35,6 @@ public class Game
         _weaponBehaviour = weaponBehaviour;
         _scoreNumberBehaviour = scoreNumberBehaviour;
 
-        _loseTimer.AddTime(startLoseTime);
         loseTimerBehaviour.Init(_loseTimer);
 
         _debugPanel.Init(debugPanelBehaviour);
@@ -129,7 +128,7 @@ public class Game
         else
         {
             _currentLevelChainId = _levelsChain[_currentLevelChainNumber];
-            _targetBuilder.Load(_currentLevelChainId);
+            _targetBuilder.Load(_currentLevelChainId, _loseTimer);
             LevelChanged?.Invoke(_currentLevelChainNumber);
         }
     }

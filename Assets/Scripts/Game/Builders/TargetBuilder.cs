@@ -11,7 +11,7 @@ public class TargetBuilder
 
     public List<Target> Controllers => _controllers;
 
-    public void Load(string levelId)
+    public void Load(string levelId, LoseTimer _loseTimer)
     {
         var levelStorage = _storage.LevelStorage.GetAsset(levelId);
         if (levelStorage == null)
@@ -19,6 +19,8 @@ public class TargetBuilder
             return;
         }
 
+        _loseTimer.AddTime(levelStorage.AddTime);
+        
         foreach (var element in levelStorage.Elements)
         {
             var asset = _storage.TargetStorage.GetAsset(element.Id);
