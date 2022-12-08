@@ -4,13 +4,15 @@ public class Player
 {
     private Game _game;
     private Weapon _weapon = new Weapon();
+    private ScoreAttribute _scoreAttribute = new ScoreAttribute();
 
-    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, WeaponBehaviour weaponBehaviour)
+    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, WeaponBehaviour weaponBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _game = game;
         _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay);
-
+        
         weaponBehaviour.Init(_weapon);
+        scoreNumberBehaviour.Init(_scoreAttribute);
     }
 
     public void Update()
@@ -28,7 +30,7 @@ public class Player
         var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea();
         if (targetController != null && targetZoneBehaviour != null)
         {
-            Debug.Log($"Zone: {targetZoneBehaviour.ZoneId}");
+            _scoreAttribute.GiveValue(1);
 
             if (_weapon.TryShot(targetController))
             {

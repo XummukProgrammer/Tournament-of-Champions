@@ -16,15 +16,17 @@ public class Game
     GameState _state;
 
     WeaponBehaviour _weaponBehaviour;
+    ScoreNumberBehaviour _scoreNumberBehaviour;
 
     DebugPanel _debugPanel = new DebugPanel();
 
-    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour)
+    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
+        _scoreNumberBehaviour = scoreNumberBehaviour;
 
         _debugPanel.Init(debugPanelBehaviour);
 
@@ -82,7 +84,7 @@ public class Game
 
     private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay)
     {
-        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, _weaponBehaviour);
+        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, _weaponBehaviour, _scoreNumberBehaviour);
 
         ResetGame();
         IncrementLevelChain();

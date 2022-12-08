@@ -8,6 +8,8 @@ public class Launcher : MonoBehaviour
     [SerializeField] private GameAsset _gameAsset;
 
     [SerializeField] private LevelNumberBehaviour _levelNumberBehaviour;
+    [SerializeField] private ScoreNumberBehaviour _scoreNumberBehaviour;
+
     [SerializeField] private WeaponBehaviour _weaponBehaviour;
     [SerializeField] private HUDPanelBehaviour _hudPanelBehaviour;
     [SerializeField] private WinPanelBehaviour _winPanelBehaviour;
@@ -27,7 +29,7 @@ public class Launcher : MonoBehaviour
         _hudPanelBehaviour.Init(_game);
         _winPanelBehaviour.Init(_game);
 
-        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, _weaponBehaviour, _debugPanelBehaviour);
+        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour);
     }
     
     private void Update()

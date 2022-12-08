@@ -1,4 +1,4 @@
-public class HealthAttribute : IAttribute
+public class ScoreAttribute : IAttribute
 {
     public override void GiveValue(int value)
     {
@@ -9,14 +9,6 @@ public class HealthAttribute : IAttribute
 
     public override void TakeValue(int value)
     {
-        int prevValue = _value;
-        _value -= value;
-
-        if (_value < 0)
-        {
-            _value = 0;
-        }
-
-        ValueChanged?.Invoke(prevValue, _value);
+        throw new System.NotImplementedException();
     }
 }

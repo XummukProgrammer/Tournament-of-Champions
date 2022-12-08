@@ -6,7 +6,7 @@ public abstract class IAttributeChangePolicy
 
 public abstract class IAttribute : IAttributeChangePolicy
 {
-    public System.Action<int> ValueChanged;
+    public System.Action<int, int> ValueChanged;
 
     protected int _value = 0;
 
