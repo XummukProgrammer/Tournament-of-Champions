@@ -21,3 +21,10 @@ MonoBehaviour:
   _explosionSound: {fileID: 8300000, guid: d4d303d5e777cac4b829e6ef33c0e037, type: 3}
   _hitParticle: {fileID: 8767175486646758768, guid: 5c929f7a4a9852f429b0d2d570b64e60, type: 3}
   _healthValue: 2
+  _zoneScores:
+  - _id: Zone1
+    _score: 3
+  - _id: Zone2
+    _score: 2
+  - _id: Zone3
+    _score: 1
