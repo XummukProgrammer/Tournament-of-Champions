@@ -29,6 +29,8 @@ public class Game
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour)
     {
+        Cursor.visible = false;
+
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
