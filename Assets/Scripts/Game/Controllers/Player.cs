@@ -11,11 +11,11 @@ public class Player
     public Vector3 CursorPosition => _cursorPosition;
 
     public void Init(Game game, 
-        string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, Vector2[] weaponAccuracyOffsets, 
+        string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, Vector2[] weaponAccuracyOffsets, float weaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _game = game;
-        _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay, weaponAccuracyOffsets);
+        _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay, weaponAccuracyOffsets, weaponAccuracyChangeDelay);
         _weapon.AccuracyChanged += OnWeaponAccuracyChanged;
 
         weaponBehaviour.Init(_weapon);

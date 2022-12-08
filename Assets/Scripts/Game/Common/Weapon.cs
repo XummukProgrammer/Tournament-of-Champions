@@ -24,7 +24,7 @@ public class Weapon
     public int CurrentAmmo => _currentAmmo;
     public Vector2 CurrentAccuracyOffset => _accuracyOffsets[_currentAccuracyOffsetIndex];
 
-    public void Init(string id, int damage, int ammo, float reloadDelay, Vector2[] accuracyOffsets)
+    public void Init(string id, int damage, int ammo, float reloadDelay, Vector2[] accuracyOffsets, float accuracyChangeDelay)
     {
         _id = id;
         _damage = damage;
@@ -34,7 +34,7 @@ public class Weapon
         _accuracyOffsets = accuracyOffsets;
 
         _currentAccuracyOffsetIndex = 0;
-        _accuracyChangeDelay = 0.1f;
+        _accuracyChangeDelay = accuracyChangeDelay;
         _accuracyChangeTime = _accuracyChangeDelay;
 
         OnReloaded();

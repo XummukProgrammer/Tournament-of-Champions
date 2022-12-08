@@ -21,7 +21,8 @@ public class Game
     DebugPanel _debugPanel = new DebugPanel();
 
     public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
-        string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets, 
+        string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
+        Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _targetBuilder = targetBuilder;
@@ -32,7 +33,7 @@ public class Game
 
         _debugPanel.Init(debugPanelBehaviour);
 
-        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets);
+        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, playerWeaponAccuracyChangeDelay);
     }
 
     public void Update()
@@ -84,9 +85,10 @@ public class Game
         _targetBuilder.DestroyController(controller);
     }
 
-    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets)
+    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, 
+        float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay)
     {
-        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, 
+        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, playerWeaponAccuracyChangeDelay,
             _weaponBehaviour, _scoreNumberBehaviour);
 
         ResetGame();
