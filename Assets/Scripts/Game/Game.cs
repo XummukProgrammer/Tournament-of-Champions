@@ -55,19 +55,23 @@ public class Game
         }
     }
 
-    public Target GetTargetInMouseArea()
+    public (Target, TargetZoneBehaviour) GetTargetInMouseArea()
     {
         RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
-            var targetBehaviour = hit.collider.GetComponent<TargetBehaviour>();
-            if (targetBehaviour != null)
+            var targetZoneBehaviour = hit.collider.GetComponent<TargetZoneBehaviour>();
+            if (targetZoneBehaviour != null)
             {
-                return targetBehaviour.Controller;
+                var targetBehaviour = targetZoneBehaviour.GetComponentInParent<TargetBehaviour>();
+                if (targetBehaviour != null)
+                {
+                    return (targetBehaviour.Controller, targetZoneBehaviour);
+                }
             }
         }
-        return null;
+        return (null, null);
     }
 
     public void DestroyTarget(Target controller)

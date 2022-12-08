@@ -9,6 +9,8 @@ public class Target : IShotable
     private AudioClip _explosionSound;
     private ParticleSystem _hitParticle;
 
+    public TargetBehaviour Behaviour => _behaviour;
+
     public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);

@@ -25,9 +25,11 @@ public class Player
 
     private void Shot()
     {
-        var targetController = _game.GetTargetInMouseArea();
-        if (targetController != null)
+        var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea();
+        if (targetController != null && targetZoneBehaviour != null)
         {
+            Debug.Log($"Zone: {targetZoneBehaviour.ZoneId}");
+
             if (_weapon.TryShot(targetController))
             {
                 if (targetController.IsDied())
