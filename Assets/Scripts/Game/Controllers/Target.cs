@@ -8,10 +8,11 @@ public class Target : IShotable
     private AudioClip[] _hitSounds;
     private AudioClip _explosionSound;
     private ParticleSystem _hitParticle;
+    private TargetZoneScore[] _zoneScores;
 
     public TargetBehaviour Behaviour => _behaviour;
 
-    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue)
+    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue, TargetZoneScore[] zoneScores)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
         _behaviour.Init(this);
@@ -22,6 +23,8 @@ public class Target : IShotable
         _explosionSound = explosionSound;
 
         _hitParticle = GameObject.Instantiate(hitParticle, _behaviour.transform.position, Quaternion.identity, _behaviour.transform);
+
+        _zoneScores = zoneScores;
     }
 
     public void Destroy()
@@ -51,5 +54,17 @@ public class Target : IShotable
     public bool IsDied()
     {
         return _healthAttribute.Value == 0;
+    }
+
+    public int GetScoreWithZone(string zoneId)
+    {
+        foreach (var zoneScore in _zoneScores)
+        {
+            if (zoneScore.Id == zoneId)
+            {
+                return zoneScore.Score;
+            }
+        }
+        return 0;
     }
 }
