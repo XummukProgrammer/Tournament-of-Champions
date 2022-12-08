@@ -29,7 +29,9 @@ public class Launcher : MonoBehaviour
         _hudPanelBehaviour.Init(_game);
         _winPanelBehaviour.Init(_game);
 
-        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour);
+        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, 
+            playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, playerWeaponAsset.AccuracyOffsets, 
+            _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour);
     }
     
     private void Update()

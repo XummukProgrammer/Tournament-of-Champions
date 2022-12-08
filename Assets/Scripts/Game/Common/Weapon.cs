@@ -3,6 +3,7 @@ using UnityEngine;
 public class Weapon
 {
     public System.Action<int> AmmoChanged;
+    public System.Action<Vector2> AccuracyChanged;
 
     private string _id;
     private int _damage;
@@ -12,35 +13,39 @@ public class Weapon
     private int _currentAmmo;
     private float _currentReloadDelay;
 
+    private Vector2[] _accuracyOffsets;
+    private int _currentAccuracyOffsetIndex;
+    private float _accuracyChangeDelay;
+    private float _accuracyChangeTime;
+
     public string Id => _id;
     public int Damage => _damage;
     public int Ammo => _ammo;
     public int CurrentAmmo => _currentAmmo;
+    public Vector2 CurrentAccuracyOffset => _accuracyOffsets[_currentAccuracyOffsetIndex];
 
-    public void Init(string id, int damage, int ammo, float reloadDelay)
+    public void Init(string id, int damage, int ammo, float reloadDelay, Vector2[] accuracyOffsets)
     {
         _id = id;
         _damage = damage;
         _ammo = ammo;
         _reloadDelay = reloadDelay;
         _currentReloadDelay = 0f;
+        _accuracyOffsets = accuracyOffsets;
+
+        _currentAccuracyOffsetIndex = 0;
+        _accuracyChangeDelay = 0.1f;
+        _accuracyChangeTime = _accuracyChangeDelay;
 
         OnReloaded();
     }
 
     public void Update()
     {
-        if (_currentReloadDelay > 0f)
-        {
-            float deltaTime = Time.deltaTime;
-            _currentReloadDelay -= deltaTime;
+        float deltaTime = Time.deltaTime;
 
-            if (_currentReloadDelay <= 0f)
-            {
-                _currentReloadDelay = 0f;
-                OnReloaded();
-            }
-        }
+        ReloadProcess(deltaTime);
+        AccuracyProcess(deltaTime);
     }
 
     public bool TryShot(IShotable target)
@@ -74,5 +79,37 @@ public class Weapon
     {
         _currentAmmo = ammo;
         AmmoChanged?.Invoke(_currentAmmo);
+    }
+
+    private void ReloadProcess(float deltaTime)
+    {
+        if (_currentReloadDelay > 0f)
+        {
+            _currentReloadDelay -= deltaTime;
+
+            if (_currentReloadDelay <= 0f)
+            {
+                _currentReloadDelay = 0f;
+                OnReloaded();
+            }
+        }
+    }
+
+    private void AccuracyProcess(float deltaTime)
+    {
+        _accuracyChangeTime -= deltaTime;
+        if (_accuracyChangeTime <= 0f)
+        {
+            _accuracyChangeTime = _accuracyChangeDelay;
+
+            ++_currentAccuracyOffsetIndex;
+
+            if (_currentAccuracyOffsetIndex >= _accuracyOffsets.Length)
+            {
+                _currentAccuracyOffsetIndex = 0;
+            }
+
+            AccuracyChanged?.Invoke(CurrentAccuracyOffset);
+        }
     }
 }

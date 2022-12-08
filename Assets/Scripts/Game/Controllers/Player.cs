@@ -6,13 +6,22 @@ public class Player
     private Weapon _weapon = new Weapon();
     private ScoreAttribute _scoreAttribute = new ScoreAttribute();
 
-    public void Init(Game game, string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, WeaponBehaviour weaponBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
+    private Vector3 _cursorPosition;
+
+    public Vector3 CursorPosition => _cursorPosition;
+
+    public void Init(Game game, 
+        string weaponId, int weaponDamage, int weaponAmmo, float weaponReloadDelay, Vector2[] weaponAccuracyOffsets, 
+        WeaponBehaviour weaponBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _game = game;
-        _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay);
-        
+        _weapon.Init(weaponId, weaponDamage, weaponAmmo, weaponReloadDelay, weaponAccuracyOffsets);
+        _weapon.AccuracyChanged += OnWeaponAccuracyChanged;
+
         weaponBehaviour.Init(_weapon);
         scoreNumberBehaviour.Init(_scoreAttribute);
+
+        OnWeaponAccuracyChanged(_weapon.CurrentAccuracyOffset);
     }
 
     public void Update()
@@ -27,7 +36,7 @@ public class Player
 
     private void Shot()
     {
-        var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea();
+        var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea(CursorPosition);
         if (targetController != null && targetZoneBehaviour != null)
         {
             if (_weapon.TryShot(targetController))
@@ -41,5 +50,10 @@ public class Player
                 }
             }
         }
+    }
+
+    private void OnWeaponAccuracyChanged(Vector2 accuracyOffset)
+    {
+        _cursorPosition = _game.GetMousePosition() + new Vector3(accuracyOffset.x, accuracyOffset.y, 0);
     }
 }

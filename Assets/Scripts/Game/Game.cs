@@ -20,7 +20,9 @@ public class Game
 
     DebugPanel _debugPanel = new DebugPanel();
 
-    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
+    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
+        string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets, 
+        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
@@ -30,7 +32,7 @@ public class Game
 
         _debugPanel.Init(debugPanelBehaviour);
 
-        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay);
+        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets);
     }
 
     public void Update()
@@ -57,9 +59,9 @@ public class Game
         }
     }
 
-    public (Target, TargetZoneBehaviour) GetTargetInMouseArea()
+    public (Target, TargetZoneBehaviour) GetTargetInMouseArea(Vector3 position)
     {
-        RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
 
         if (hit.collider != null)
         {
@@ -82,9 +84,10 @@ public class Game
         _targetBuilder.DestroyController(controller);
     }
 
-    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay)
+    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets)
     {
-        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, _weaponBehaviour, _scoreNumberBehaviour);
+        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, 
+            _weaponBehaviour, _scoreNumberBehaviour);
 
         ResetGame();
         IncrementLevelChain();
@@ -125,5 +128,10 @@ public class Game
     {
         _state = state;
         _debugPanel.UpdateInfo("state", $"Стейт: {_state}");
+    }
+
+    public Vector3 GetMousePosition()
+    {
+        return _camera.ScreenToWorldPoint(Input.mousePosition);
     }
 }
