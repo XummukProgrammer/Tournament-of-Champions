@@ -30,11 +30,11 @@ public class Player
         var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea();
         if (targetController != null && targetZoneBehaviour != null)
         {
-            int scoreWithZone = targetController.GetScoreWithZone(targetZoneBehaviour.ZoneId);
-            _scoreAttribute.GiveValue(scoreWithZone);
-
             if (_weapon.TryShot(targetController))
             {
+                int scoreWithZone = targetController.GetScoreWithZone(targetZoneBehaviour.ZoneId);
+                _scoreAttribute.GiveValue(scoreWithZone);
+
                 if (targetController.IsDied())
                 {
                     _game.DestroyTarget(targetController);
