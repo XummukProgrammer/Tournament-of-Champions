@@ -14,6 +14,8 @@ public class Launcher : MonoBehaviour
     [SerializeField] private HUDPanelBehaviour _hudPanelBehaviour;
     [SerializeField] private WinPanelBehaviour _winPanelBehaviour;
     [SerializeField] private DebugPanelBehaviour _debugPanelBehaviour;
+    [SerializeField] private LoseTimerBehaviour _loseTimerBehaviour;
+    [SerializeField] private LosePanelBehaviour _losePanelBehaviour;
 
     Game _game = new Game();
 
@@ -28,11 +30,12 @@ public class Launcher : MonoBehaviour
         _levelNumberBehaviour.Init(_game);
         _hudPanelBehaviour.Init(_game);
         _winPanelBehaviour.Init(_game);
+        _losePanelBehaviour.Init(_game);
 
         _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyOffsets, playerWeaponAsset.AccuracyChangeDelay, 
-            _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour);
+            _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour, _loseTimerBehaviour);
     }
     
     private void Update()

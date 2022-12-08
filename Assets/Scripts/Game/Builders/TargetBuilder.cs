@@ -35,4 +35,13 @@ public class TargetBuilder
     {
         _controllers.Remove(controller);
     }
+
+    public void DestroyAllControllers()
+    {
+        foreach (var controller in _controllers)
+        {
+            GameObject.Destroy(controller.Behaviour.gameObject);
+        }
+        _controllers.Clear();
+    }
 }

@@ -4,6 +4,7 @@ public class Game
 {
     public System.Action<int> LevelChanged;
     public System.Action Winned;
+    public System.Action Losed;
 
     string[] _levelsChain;
     int _currentLevelChainNumber = -1;
@@ -20,16 +21,22 @@ public class Game
 
     DebugPanel _debugPanel = new DebugPanel();
 
+    LoseTimer _loseTimer = new LoseTimer();
+
     public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
         Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
-        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour)
+        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
+        LoseTimerBehaviour loseTimerBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
         _scoreNumberBehaviour = scoreNumberBehaviour;
+
+        _loseTimer.AddTime(10);
+        loseTimerBehaviour.Init(_loseTimer);
 
         _debugPanel.Init(debugPanelBehaviour);
 
@@ -39,6 +46,7 @@ public class Game
     public void Update()
     {
         _debugPanel.Update();
+        _loseTimer.Update();
 
         switch (_state)
         {
@@ -48,10 +56,18 @@ public class Game
                 break;
             case GameState.InProgress:
                 _player.Update();
-                CheckWinCondition();
+                if (CheckWinCondition())
+                {
+                    IncrementLevelChain();
+                }
+                else if (CheckLoseCondition())
+                {
+                    _targetBuilder.DestroyAllControllers();
+                    SetState(GameState.Lose);
+                    Losed?.Invoke();
+                }
                 break;
             case GameState.Win:
-                Debug.Log("Win!!!");
                 break;
             case GameState.Lose:
                 break;
@@ -118,12 +134,18 @@ public class Game
         }
     }
 
-    private void CheckWinCondition()
+    private bool CheckWinCondition()
     {
         if (_targetBuilder.Controllers.Count == 0)
         {
-            IncrementLevelChain();
+            return true;
         }
+        return false;
+    }
+
+    private bool CheckLoseCondition()
+    {
+        return _loseTimer.IsLose();
     }
 
     private void SetState(GameState state)
