@@ -27,7 +27,7 @@ public class Game
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
         Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
-        LoseTimerBehaviour loseTimerBehaviour)
+        LoseTimerBehaviour loseTimerBehaviour, float startLoseTime)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
@@ -35,7 +35,7 @@ public class Game
         _weaponBehaviour = weaponBehaviour;
         _scoreNumberBehaviour = scoreNumberBehaviour;
 
-        _loseTimer.AddTime(10);
+        _loseTimer.AddTime(startLoseTime);
         loseTimerBehaviour.Init(_loseTimer);
 
         _debugPanel.Init(debugPanelBehaviour);
