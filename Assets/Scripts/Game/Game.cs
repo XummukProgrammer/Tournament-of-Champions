@@ -18,22 +18,23 @@ public class Game
 
     WeaponBehaviour _weaponBehaviour;
     ScoreNumberBehaviour _scoreNumberBehaviour;
+    CursorBehaviour _cursorBehaviour;
 
     DebugPanel _debugPanel = new DebugPanel();
-
     LoseTimer _loseTimer = new LoseTimer();
 
     public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
         Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
-        LoseTimerBehaviour loseTimerBehaviour)
+        LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour)
     {
         _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
         _scoreNumberBehaviour = scoreNumberBehaviour;
+        _cursorBehaviour = cursorBehaviour;
 
         loseTimerBehaviour.Init(_loseTimer);
 
@@ -104,7 +105,7 @@ public class Game
         float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay)
     {
         _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, playerWeaponAccuracyChangeDelay,
-            _weaponBehaviour, _scoreNumberBehaviour);
+            _weaponBehaviour, _scoreNumberBehaviour, _cursorBehaviour);
 
         ResetGame();
         IncrementLevelChain();
