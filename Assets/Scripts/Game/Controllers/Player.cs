@@ -27,7 +27,7 @@ public class Player
     public void Update()
     {
         _weapon.Update();
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             Shot();
@@ -36,11 +36,14 @@ public class Player
 
     private void Shot()
     {
-        var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea(CursorPosition);
-        if (targetController != null && targetZoneBehaviour != null)
+        if (_weapon.TryShot())
         {
-            if (_weapon.TryShot(targetController))
+            var (targetController, targetZoneBehaviour) = _game.GetTargetInMouseArea(CursorPosition);
+
+            if (targetController != null && targetZoneBehaviour != null)
             {
+                targetController.Hit(_weapon.Damage);
+
                 int scoreWithZone = targetController.GetScoreWithZone(targetZoneBehaviour.ZoneId);
                 _scoreAttribute.GiveValue(scoreWithZone);
 

@@ -48,11 +48,10 @@ public class Weapon
         AccuracyProcess(deltaTime);
     }
 
-    public bool TryShot(IShotable target)
+    public bool TryShot()
     {
         if (_currentAmmo > 0)
         {
-            target.Hit(_damage);
             SetCurrentAmmo(_currentAmmo - 1);
 
             if (_currentAmmo == 0)
