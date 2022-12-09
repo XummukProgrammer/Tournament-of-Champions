@@ -8,6 +8,7 @@ public class Player
     private CursorBehaviour _cursorBehaviour;
 
     private Vector3 _cursorPosition;
+    private Vector3 _accuracyOffset;
 
     public Vector3 CursorPosition => _cursorPosition;
 
@@ -29,7 +30,8 @@ public class Player
     public void Update()
     {
         _weapon.Update();
-        
+        UpdateCursorPosition();
+
         if (Input.GetMouseButtonDown(0))
         {
             Shot();
@@ -59,7 +61,13 @@ public class Player
 
     private void OnWeaponAccuracyChanged(Vector2 accuracyOffset)
     {
-        _cursorPosition = _game.GetMousePosition() + new Vector3(accuracyOffset.x, accuracyOffset.y, 0);
+        _accuracyOffset = accuracyOffset;
+        UpdateCursorPosition();
+    }
+
+    private void UpdateCursorPosition()
+    {
+        _cursorPosition = _game.GetMousePosition() + new Vector3(_accuracyOffset.x, _accuracyOffset.y, 0);
         _cursorBehaviour.SetPosition(_cursorPosition);
     }
 }
