@@ -24,8 +24,8 @@ public class Game
     LoseTimer _loseTimer = new LoseTimer();
 
     public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
-        string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay, 
-        Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay,
+        string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
+        WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour)
     {
@@ -42,7 +42,7 @@ public class Game
 
         _debugPanel.Init(debugPanelBehaviour);
 
-        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, playerWeaponAccuracyChangeDelay);
+        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
     }
 
     public void Update()
@@ -104,9 +104,9 @@ public class Game
     }
 
     private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, 
-        float playerWeaponReloadDelay, Vector2[] playerWeaponAccuracyOffsets, float playerWeaponAccuracyChangeDelay)
+        float playerWeaponReloadDelay, WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay)
     {
-        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyOffsets, playerWeaponAccuracyChangeDelay,
+        _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay,
             _weaponBehaviour, _scoreNumberBehaviour, _cursorBehaviour);
 
         ResetGame();

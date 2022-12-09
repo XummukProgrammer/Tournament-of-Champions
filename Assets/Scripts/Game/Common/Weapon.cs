@@ -24,18 +24,22 @@ public class Weapon
     public int CurrentAmmo => _currentAmmo;
     public Vector2 CurrentAccuracyOffset => _accuracyOffsets[_currentAccuracyOffsetIndex];
 
-    public void Init(string id, int damage, int ammo, float reloadDelay, Vector2[] accuracyOffsets, float accuracyChangeDelay)
+    public void Init(string id, int damage, int ammo, float reloadDelay, WeaponAccuracyBehaviour accuracyBehaviour, float accuracyChangeDelay)
     {
         _id = id;
         _damage = damage;
         _ammo = ammo;
         _reloadDelay = reloadDelay;
         _currentReloadDelay = 0f;
-        _accuracyOffsets = accuracyOffsets;
 
         _currentAccuracyOffsetIndex = 0;
         _accuracyChangeDelay = accuracyChangeDelay;
         _accuracyChangeTime = _accuracyChangeDelay;
+
+        var accuracyObject = GameObject.Instantiate(accuracyBehaviour);
+        accuracyObject.transform.position = Vector3.zero;
+        _accuracyOffsets = accuracyObject.GetPoints();
+        GameObject.Destroy(accuracyObject.gameObject);
 
         OnReloaded();
     }

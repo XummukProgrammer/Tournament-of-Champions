@@ -35,7 +35,7 @@ public class Launcher : MonoBehaviour
 
         _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
-            playerWeaponAsset.AccuracyOffsets, playerWeaponAsset.AccuracyChangeDelay, 
+            playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
             _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour, _loseTimerBehaviour, _cursorBehaviour);
     }
     
