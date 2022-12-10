@@ -23,11 +23,16 @@ public class Game
     DebugPanel _debugPanel = new DebugPanel();
     LoseTimer _loseTimer = new LoseTimer();
 
+    YaAdsManager _yaAdsManager = new YaAdsManager();
+
+    public LoseTimer LoseTimer => _loseTimer;
+
     public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
-        LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour)
+        LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
+        YaAdsBehaviour yaAdsBehaviour)
     {
         Cursor.visible = false;
 
@@ -42,7 +47,16 @@ public class Game
 
         _debugPanel.Init(debugPanelBehaviour);
 
+        _yaAdsManager.Init(this);
+        _yaAdsManager.AddReward(new YaAdsAddTimeReward());
+        yaAdsBehaviour.Init(_yaAdsManager);
+
         StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
+    }
+
+    public void Deinit()
+    {
+        _yaAdsManager.Deinit();
     }
 
     public void Update()
