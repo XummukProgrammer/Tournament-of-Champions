@@ -19,6 +19,7 @@ public class Launcher : MonoBehaviour
     [SerializeField] private CursorBehaviour _cursorBehaviour;
 
     [SerializeField] private YaAdsBehaviour _yaAdsBehaviour;
+    [SerializeField] private YaPurchasesBehaviour _yaPurchasesBehaviour;
 
     Game _game = new Game();
 
@@ -39,7 +40,7 @@ public class Launcher : MonoBehaviour
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
             _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour, _loseTimerBehaviour, _cursorBehaviour,
-            _yaAdsBehaviour);
+            _yaAdsBehaviour, _yaPurchasesBehaviour);
     }
     
     private void Update()

@@ -24,6 +24,7 @@ public class Game
     LoseTimer _loseTimer = new LoseTimer();
 
     YaAdsManager _yaAdsManager = new YaAdsManager();
+    YaPurchasesManager _yaPurchasesManager = new YaPurchasesManager();
 
     public LoseTimer LoseTimer => _loseTimer;
 
@@ -32,7 +33,7 @@ public class Game
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
-        YaAdsBehaviour yaAdsBehaviour)
+        YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour)
     {
         Cursor.visible = false;
 
@@ -51,12 +52,17 @@ public class Game
         _yaAdsManager.AddReward(new YaAdsAddTimeReward());
         yaAdsBehaviour.Init(_yaAdsManager);
 
+        _yaPurchasesManager.Init(this);
+        _yaPurchasesManager.AddPurchase(new YaAddTimePurchase());
+        yaPurchasesBehaviour.Init(_yaPurchasesManager);
+
         StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
     }
 
     public void Deinit()
     {
         _yaAdsManager.Deinit();
+        _yaPurchasesManager.Deinit();
     }
 
     public void Update()
