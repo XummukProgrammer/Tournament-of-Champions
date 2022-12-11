@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Weapon_1
   m_EditorClassIdentifier: 
   _id: Weapon_1
-  _damage: 2
-  _ammo: 1
+  _damage: 1
+  _ammo: 5
   _reloadDelay: 2
   _accuracyBehaviour: {fileID: 943308958413303184, guid: b517dcdd808eeb446850b2b0511b35f6, type: 3}
-  _accuracyChangeDelay: 1
+  _accuracyChangeDelay: 0.25
