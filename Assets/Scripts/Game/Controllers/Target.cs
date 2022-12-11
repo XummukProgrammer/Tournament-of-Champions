@@ -15,6 +15,7 @@ public class Target : IShotable
     public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue, TargetZoneScore[] zoneScores)
     {
         _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
+        _behaviour.transform.position = position;
         _behaviour.Init(this);
 
         _healthAttribute.GiveValue(healthValue);
