@@ -200,7 +200,7 @@ TextureImporter:
         width: 225
         height: 228
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,6 +208,27 @@ TextureImporter:
       bones: []
       spriteID: 27382d6c12f260f4f9507fcc76b6e196
       internalID: 1682401879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 276
+        width: 156
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe531b55d618f94abf8372d9b3db4f2
+      internalID: -401513193
       vertices: []
       indices: 
       edges: []
@@ -229,6 +250,7 @@ TextureImporter:
       "\u0411\u0443\u0434\u0438\u043B\u044C\u043D\u0438\u043A": 855416450
       "\u0422\u0435\u043A\u0441\u0442\u0443\u0440\u044B_3": -1476895986
       "\u041F\u0440\u0438\u0446\u0435\u043B": -1810058983
+      "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442": -401513193
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
