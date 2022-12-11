@@ -7,7 +7,7 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
 
-    [SerializeField] private LevelNumberBehaviour _levelNumberBehaviour;
+    //[SerializeField] private LevelNumberBehaviour _levelNumberBehaviour;
     [SerializeField] private ScoreNumberBehaviour _scoreNumberBehaviour;
 
     [SerializeField] private WeaponBehaviour _weaponBehaviour;
@@ -31,7 +31,7 @@ public class Launcher : MonoBehaviour
             return;
         }
 
-        _levelNumberBehaviour.Init(_game);
+        //_levelNumberBehaviour.Init(_game);
         _hudPanelBehaviour.Init(_game);
         _winPanelBehaviour.Init(_game);
         _losePanelBehaviour.Init(_game);
