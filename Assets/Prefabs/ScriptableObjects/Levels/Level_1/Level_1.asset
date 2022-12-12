@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d69aa6a012fd8449b643853414abb10, type: 3}
+  m_Script: {fileID: 11500000, guid: f0f44944987a20e499a51f0c48ed339a, type: 3}
   m_Name: Level_1
   m_EditorClassIdentifier: 
-  _id: Level_1
-  _elements:
-  - _id: Target_1
-    _position: {x: 0, y: 0, z: 0}
-  _addTime: 10
+  _waveBehaviours:
+  - {fileID: 1148247434620194226, guid: 4b510388ed385f2438dd716669cf2054, type: 3}
+  - {fileID: 910847345597871388, guid: b2e9e92e33fa31646a62198ad94058b7, type: 3}

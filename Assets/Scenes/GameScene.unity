@@ -378,9 +378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
-  _targetBuilder:
-    _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
-    _container: {fileID: 440728114}
   _camera: {fileID: 519420031}
   _gameAsset: {fileID: 11400000, guid: c0de45e657b72244eb2a67932b968ffe, type: 2}
   _scoreNumberBehaviour: {fileID: 1117289926}
@@ -393,6 +390,8 @@ MonoBehaviour:
   _cursorBehaviour: {fileID: 1577459490}
   _yaAdsBehaviour: {fileID: 1694171777}
   _yaPurchasesBehaviour: {fileID: 2032627162}
+  _levelAsset: {fileID: 11400000, guid: 134a6fb49e6a2e042a198832a47cb4fa, type: 2}
+  _controllersContainer: {fileID: 440728114}
 --- !u!4 &361338018
 Transform:
   m_ObjectHideFlags: 0
@@ -418,7 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440728114}
   m_Layer: 0
-  m_Name: Targets
+  m_Name: Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

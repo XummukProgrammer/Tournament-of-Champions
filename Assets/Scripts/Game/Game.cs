@@ -6,38 +6,36 @@ public class Game
     public System.Action Winned;
     public System.Action Losed;
 
-    string[] _levelsChain;
-    int _currentLevelChainNumber = -1;
-    string _currentLevelChainId;
+    private Player _player = new Player();
 
-    Player _player = new Player();
+    private Camera _camera;
+    private GameState _state;
 
-    Camera _camera;
-    GameState _state;
+    private WeaponBehaviour _weaponBehaviour;
+    private ScoreNumberBehaviour _scoreNumberBehaviour;
+    private CursorBehaviour _cursorBehaviour;
 
-    WeaponBehaviour _weaponBehaviour;
-    ScoreNumberBehaviour _scoreNumberBehaviour;
-    CursorBehaviour _cursorBehaviour;
+    private DebugPanel _debugPanel = new DebugPanel();
+    private LoseTimer _loseTimer = new LoseTimer();
 
-    DebugPanel _debugPanel = new DebugPanel();
-    LoseTimer _loseTimer = new LoseTimer();
+    private YaAdsManager _yaAdsManager = new YaAdsManager();
+    private YaPurchasesManager _yaPurchasesManager = new YaPurchasesManager();
 
-    YaAdsManager _yaAdsManager = new YaAdsManager();
-    YaPurchasesManager _yaPurchasesManager = new YaPurchasesManager();
+    private Level _level = new Level();
 
     public LoseTimer LoseTimer => _loseTimer;
 
-    public void Init(Camera camera, string[] levelsChain, 
+    public void Init(Camera camera, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
-        YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour)
+        YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
+        LevelAsset levelAsset, Transform controllersContainer)
     {
         Cursor.visible = false;
 
         _camera = camera;
-        _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
         _scoreNumberBehaviour = scoreNumberBehaviour;
         _cursorBehaviour = cursorBehaviour;
@@ -54,13 +52,20 @@ public class Game
         _yaPurchasesManager.AddPurchase(new YaAddTimePurchase());
         yaPurchasesBehaviour.Init(_yaPurchasesManager);
 
-        StartGame(playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
+        _level.Ended += OnLevelWin;
+
+        _loseTimer.AddTime(999);
+
+        StartGame(levelAsset, controllersContainer, 
+            playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
     }
 
     public void Deinit()
     {
         _yaAdsManager.Deinit();
         _yaPurchasesManager.Deinit();
+
+        _level.Ended -= OnLevelWin;
     }
 
     public void Update()
@@ -76,11 +81,8 @@ public class Game
                 break;
             case GameState.InProgress:
                 _player.Update();
-                if (CheckWinCondition())
-                {
-                    IncrementLevelChain();
-                }
-                else if (CheckLoseCondition())
+                _level.Update();
+                if (CheckLoseCondition())
                 {
                     SetState(GameState.Lose);
                     Losed?.Invoke();
@@ -116,44 +118,24 @@ public class Game
 
     public void DestroyTarget(Target controller)
     {
-        controller.Destroy();
+        _level.DestroyTargetController(controller);
     }
 
-    private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, 
+    private void StartGame(LevelAsset levelAsset, Transform controllersContainer, string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, 
         float playerWeaponReloadDelay, WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay)
     {
         _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay,
             _weaponBehaviour, _scoreNumberBehaviour, _cursorBehaviour);
 
         ResetGame();
-        IncrementLevelChain();
+
+        _level.Init(levelAsset, controllersContainer);
     }
 
     private void ResetGame()
     {
         SetState(GameState.InProgress);
-        _currentLevelChainNumber = -1;
-    }
-
-    private void IncrementLevelChain()
-    {
-        ++_currentLevelChainNumber;
-
-        if (_currentLevelChainNumber >= _levelsChain.Length)
-        {
-            SetState(GameState.Win);
-            Winned?.Invoke();
-        }
-        else
-        {
-            _currentLevelChainId = _levelsChain[_currentLevelChainNumber];
-            LevelChanged?.Invoke(_currentLevelChainNumber);
-        }
-    }
-
-    private bool CheckWinCondition()
-    {
-        return false;
+        _level.Deinit();
     }
 
     private bool CheckLoseCondition()
@@ -170,5 +152,11 @@ public class Game
     public Vector3 GetMousePosition()
     {
         return _camera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void OnLevelWin()
+    {
+        SetState(GameState.Win);
+        Winned?.Invoke();
     }
 }

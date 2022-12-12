@@ -1,34 +1,50 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : IShotable
+public class Target : IController, IShotable
 {
+    private TargetBehaviour _prefab;
+    private Transform _container;
+    private Vector3 _position;
     private TargetBehaviour _behaviour;
+
     private HealthAttribute _healthAttribute = new HealthAttribute();
+    private int _healthValue;
+
+    private ParticleSystem _hitParticlePrefab;
+    private ParticleSystem _hitParticle;
+
     private AudioClip[] _hitSounds;
     private AudioClip _explosionSound;
-    private ParticleSystem _hitParticle;
+
     private TargetZoneScore[] _zoneScores;
 
     public TargetBehaviour Behaviour => _behaviour;
 
-    public void Init(Transform container, TargetBehaviour prefab, Vector3 position, AudioClip[] hitSounds, AudioClip explosionSound, ParticleSystem hitParticle, int healthValue, TargetZoneScore[] zoneScores)
+    public void InitWithParams(Transform container, TargetBehaviour prefab, Vector3 position, 
+        AudioClip[] hitSounds, AudioClip explosionSound, 
+        ParticleSystem hitParticle, int healthValue, TargetZoneScore[] zoneScores)
     {
-        _behaviour = GameObject.Instantiate(prefab, position, Quaternion.identity, container);
-        _behaviour.transform.position = position;
-        _behaviour.Init(this);
-
-        _healthAttribute.GiveValue(healthValue);
-
+        _container = container;
+        _prefab = prefab;
+        _position = position;
         _hitSounds = hitSounds;
         _explosionSound = explosionSound;
-
-        _hitParticle = GameObject.Instantiate(hitParticle, _behaviour.transform.position, Quaternion.identity, _behaviour.transform);
-
         _zoneScores = zoneScores;
+        _hitParticlePrefab = hitParticle;
+        _healthValue = healthValue;
     }
 
-    public void Destroy()
+    public void Init()
+    {
+        _behaviour = GameObject.Instantiate(_prefab, _position, Quaternion.identity, _container);
+        _behaviour.Init(this);
+
+        _healthAttribute.GiveValue(_healthValue);
+
+        _hitParticle = GameObject.Instantiate(_hitParticlePrefab, _behaviour.transform.position, Quaternion.identity, _behaviour.transform);
+    }
+
+    public void Deinit()
     {
         if (_behaviour != null)
         {
