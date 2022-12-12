@@ -10,7 +10,6 @@ public class Game
     int _currentLevelChainNumber = -1;
     string _currentLevelChainId;
 
-    TargetBuilder _targetBuilder;
     Player _player = new Player();
 
     Camera _camera;
@@ -28,7 +27,7 @@ public class Game
 
     public LoseTimer LoseTimer => _loseTimer;
 
-    public void Init(TargetBuilder targetBuilder, Camera camera, string[] levelsChain, 
+    public void Init(Camera camera, string[] levelsChain, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
@@ -37,7 +36,6 @@ public class Game
     {
         Cursor.visible = false;
 
-        _targetBuilder = targetBuilder;
         _camera = camera;
         _levelsChain = levelsChain;
         _weaponBehaviour = weaponBehaviour;
@@ -84,7 +82,6 @@ public class Game
                 }
                 else if (CheckLoseCondition())
                 {
-                    _targetBuilder.DestroyAllControllers();
                     SetState(GameState.Lose);
                     Losed?.Invoke();
                 }
@@ -120,7 +117,6 @@ public class Game
     public void DestroyTarget(Target controller)
     {
         controller.Destroy();
-        _targetBuilder.DestroyController(controller);
     }
 
     private void StartGame(string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, 
@@ -151,17 +147,12 @@ public class Game
         else
         {
             _currentLevelChainId = _levelsChain[_currentLevelChainNumber];
-            _targetBuilder.Load(_currentLevelChainId, _loseTimer);
             LevelChanged?.Invoke(_currentLevelChainNumber);
         }
     }
 
     private bool CheckWinCondition()
     {
-        if (_targetBuilder.Controllers.Count == 0)
-        {
-            return true;
-        }
         return false;
     }
 

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Launcher : MonoBehaviour
 {
     [SerializeField] private Storage _storage;
-    [SerializeField] private TargetBuilder _targetBuilder;
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
 
@@ -36,7 +35,7 @@ public class Launcher : MonoBehaviour
         _winPanelBehaviour.Init(_game);
         _losePanelBehaviour.Init(_game);
 
-        _game.Init(_targetBuilder, _camera, _gameAsset.LevelsChain, 
+        _game.Init(_camera, _gameAsset.LevelsChain, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
             _weaponBehaviour, _debugPanelBehaviour, _scoreNumberBehaviour, _loseTimerBehaviour, _cursorBehaviour,
