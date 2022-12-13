@@ -12,7 +12,6 @@ public class Game
     private GameState _state;
 
     private WeaponBehaviour _weaponBehaviour;
-    private ScoreNumberBehaviour _scoreNumberBehaviour;
     private CursorBehaviour _cursorBehaviour;
 
     private DebugPanel _debugPanel = new DebugPanel();
@@ -23,21 +22,25 @@ public class Game
 
     private Level _level = new Level();
 
+    private HUDManager _hudManager = new HUDManager();
+
     public LoseTimer LoseTimer => _loseTimer;
+    public HUDManager HUDManager => _hudManager;
+    public Player Player => _player;
 
     public void Init(Camera camera, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
-        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, ScoreNumberBehaviour scoreNumberBehaviour, 
+        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, 
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
-        LevelAsset levelAsset, Transform controllersContainer)
+        LevelAsset levelAsset, Transform controllersContainer,
+        HUDContainerBehaviour hudContainerBehaviour, CoinHUDBehaviour _coinHUDPrefab)
     {
         Cursor.visible = false;
 
         _camera = camera;
         _weaponBehaviour = weaponBehaviour;
-        _scoreNumberBehaviour = scoreNumberBehaviour;
         _cursorBehaviour = cursorBehaviour;
 
         loseTimerBehaviour.Init(_loseTimer);
@@ -56,6 +59,9 @@ public class Game
 
         _loseTimer.AddTime(999);
 
+        _hudManager.Init(this, hudContainerBehaviour);
+        _hudManager.CreateAndAddController<CoinHUD>(_coinHUDPrefab, HUDLocation.Top);
+
         StartGame(levelAsset, controllersContainer, 
             playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
     }
@@ -64,6 +70,7 @@ public class Game
     {
         _yaAdsManager.Deinit();
         _yaPurchasesManager.Deinit();
+        _hudManager.Deinit();
 
         _level.Ended -= OnLevelWin;
     }
@@ -72,6 +79,7 @@ public class Game
     {
         _debugPanel.Update();
         _loseTimer.Update();
+        _hudManager.Update();
 
         switch (_state)
         {
@@ -125,7 +133,7 @@ public class Game
         float playerWeaponReloadDelay, WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay)
     {
         _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay,
-            _weaponBehaviour, _scoreNumberBehaviour, _cursorBehaviour);
+            _weaponBehaviour, _cursorBehaviour);
 
         ResetGame();
 
