@@ -1,7 +1,9 @@
 public enum HUDLocation
 {
-    Top,
+    TopSideLeft,
+    TopSideRight,
     SideLeft,
     SideRight,
-    Down
+    DownSideLeft,
+    DownSideRight
 }

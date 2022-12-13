@@ -60,7 +60,7 @@ public class Game
         _loseTimer.AddTime(999);
 
         _hudManager.Init(this, hudContainerBehaviour);
-        _hudManager.CreateAndAddController<CoinHUD>(_coinHUDPrefab, HUDLocation.Top);
+        _hudManager.CreateAndAddController<CoinHUD>(_coinHUDPrefab, HUDLocation.TopSideRight);
 
         StartGame(levelAsset, controllersContainer, 
             playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
