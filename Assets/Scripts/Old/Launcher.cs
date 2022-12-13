@@ -5,21 +5,20 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Storage _storage;
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
+    [SerializeField] private Transform _controllersContainer;
 
     [SerializeField] private DebugPanelBehaviour _debugPanelBehaviour;
-    [SerializeField] private LosePanelBehaviour _losePanelBehaviour;
     [SerializeField] private CursorBehaviour _cursorBehaviour;
 
     [SerializeField] private YaAdsBehaviour _yaAdsBehaviour;
     [SerializeField] private YaPurchasesBehaviour _yaPurchasesBehaviour;
 
     [SerializeField] private LevelAsset _levelAsset;
-    [SerializeField] private Transform _controllersContainer;
 
     [SerializeField] private HUDContainerBehaviour _hudContainerBehaviour;
     [SerializeField] private Transform _windowContainer;
 
-    Game _game = new Game();
+    private Game _game = new Game();
 
     private void Start()
     {
@@ -28,8 +27,6 @@ public class Launcher : MonoBehaviour
         {
             return;
         }
-
-        _losePanelBehaviour.Init(_game);
 
         var gameComponents = Instantiate(_gameAsset.ComponentsPrefab);
 
