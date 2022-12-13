@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class GameComponents : MonoBehaviour
 {
-    [SerializeField] private GameComponent[] _components;
+    private GameComponent[] _components;
 
     private Game _game;
-
-    public GameComponent[] Components => _components;
 
     public void Init(Game game)
     {
         _game = game;
+        _components = GetComponentsInChildren<GameComponent>();
 
         foreach (var component in _components)
         {

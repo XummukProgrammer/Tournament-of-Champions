@@ -6,8 +6,6 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
 
-    [SerializeField] private WeaponBehaviour _weaponBehaviour;
-    [SerializeField] private HUDPanelBehaviour _hudPanelBehaviour;
     [SerializeField] private WinPanelBehaviour _winPanelBehaviour;
     [SerializeField] private DebugPanelBehaviour _debugPanelBehaviour;
     [SerializeField] private LosePanelBehaviour _losePanelBehaviour;
@@ -31,7 +29,6 @@ public class Launcher : MonoBehaviour
             return;
         }
 
-        _hudPanelBehaviour.Init(_game);
         _winPanelBehaviour.Init(_game);
         _losePanelBehaviour.Init(_game);
 
@@ -40,7 +37,7 @@ public class Launcher : MonoBehaviour
         _game.Init(_camera, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
-            _weaponBehaviour, _debugPanelBehaviour, _cursorBehaviour,
+            _debugPanelBehaviour, _cursorBehaviour,
             _yaAdsBehaviour, _yaPurchasesBehaviour,
             _levelAsset, _controllersContainer,
             _hudContainerBehaviour,

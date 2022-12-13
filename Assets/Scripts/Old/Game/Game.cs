@@ -11,7 +11,6 @@ public class Game
     private Camera _camera;
     private GameState _state;
 
-    private WeaponBehaviour _weaponBehaviour;
     private CursorBehaviour _cursorBehaviour;
 
     private DebugPanel _debugPanel = new DebugPanel();
@@ -33,7 +32,7 @@ public class Game
     public void Init(Camera camera, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
-        WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, 
+        DebugPanelBehaviour debugPanelBehaviour, 
         CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         LevelAsset levelAsset, Transform controllersContainer,
@@ -45,7 +44,6 @@ public class Game
         _components = components;
 
         _camera = camera;
-        _weaponBehaviour = weaponBehaviour;
         _cursorBehaviour = cursorBehaviour;
 
         _debugPanel.Init(debugPanelBehaviour);
@@ -138,7 +136,7 @@ public class Game
         float playerWeaponReloadDelay, WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay)
     {
         _player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay,
-            _weaponBehaviour, _cursorBehaviour);
+            _cursorBehaviour);
 
         ResetGame();
 
