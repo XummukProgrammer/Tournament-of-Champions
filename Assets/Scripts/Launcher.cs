@@ -21,7 +21,6 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Transform _controllersContainer;
 
     [SerializeField] private HUDContainerBehaviour _hudContainerBehaviour;
-    [SerializeField] private CoinHUDBehaviour _coinHUDBehaviour;
 
     Game _game = new Game();
 
@@ -37,13 +36,16 @@ public class Launcher : MonoBehaviour
         _winPanelBehaviour.Init(_game);
         _losePanelBehaviour.Init(_game);
 
+        var gameComponents = Instantiate(_gameAsset.ComponentsPrefab);
+
         _game.Init(_camera, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
             _weaponBehaviour, _debugPanelBehaviour, _loseTimerBehaviour, _cursorBehaviour,
             _yaAdsBehaviour, _yaPurchasesBehaviour,
             _levelAsset, _controllersContainer,
-            _hudContainerBehaviour, _coinHUDBehaviour);
+            _hudContainerBehaviour,
+            gameComponents);
     }
     
     private void Update()

@@ -24,6 +24,8 @@ public class Game
 
     private HUDManager _hudManager = new HUDManager();
 
+    private GameComponents _components;
+
     public LoseTimer LoseTimer => _loseTimer;
     public HUDManager HUDManager => _hudManager;
     public Player Player => _player;
@@ -35,9 +37,12 @@ public class Game
         LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         LevelAsset levelAsset, Transform controllersContainer,
-        HUDContainerBehaviour hudContainerBehaviour, CoinHUDBehaviour _coinHUDPrefab)
+        HUDContainerBehaviour hudContainerBehaviour,
+        GameComponents components)
     {
         Cursor.visible = false;
+
+        _components = components;
 
         _camera = camera;
         _weaponBehaviour = weaponBehaviour;
@@ -60,7 +65,8 @@ public class Game
         _loseTimer.AddTime(999);
 
         _hudManager.Init(this, hudContainerBehaviour);
-        _hudManager.CreateAndAddController<CoinHUD>(_coinHUDPrefab, HUDLocation.TopSideRight);
+
+        _components.Init(this);
 
         StartGame(levelAsset, controllersContainer, 
             playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
@@ -71,6 +77,7 @@ public class Game
         _yaAdsManager.Deinit();
         _yaPurchasesManager.Deinit();
         _hudManager.Deinit();
+        _components.Deinit();
 
         _level.Ended -= OnLevelWin;
     }

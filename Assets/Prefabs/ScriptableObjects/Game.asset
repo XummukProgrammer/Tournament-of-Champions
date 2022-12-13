@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae5f0be951fd5346b82f6642c128bb4, type: 3}
   m_Name: Game
   m_EditorClassIdentifier: 
-  _levelsChain:
-  - Level_1
-  - Level_2
   _playerWeaponId: Weapon_1
-  _startLoseTime: 10
+  _componentsPrefab: {fileID: 8182273351803821612, guid: 5e1106e579d4b8b41b1c597ef80ef9c4, type: 3}
