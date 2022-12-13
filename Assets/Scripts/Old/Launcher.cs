@@ -7,7 +7,6 @@ public class Launcher : MonoBehaviour
     [SerializeField] private GameAsset _gameAsset;
     [SerializeField] private Transform _controllersContainer;
 
-    [SerializeField] private DebugPanelBehaviour _debugPanelBehaviour;
     [SerializeField] private CursorBehaviour _cursorBehaviour;
 
     [SerializeField] private YaAdsBehaviour _yaAdsBehaviour;
@@ -33,7 +32,7 @@ public class Launcher : MonoBehaviour
         _game.Init(_camera, 
             playerWeaponAsset.Id, playerWeaponAsset.Damage, playerWeaponAsset.Ammo, playerWeaponAsset.ReloadDelay, 
             playerWeaponAsset.AccuracyBehaviour, playerWeaponAsset.AccuracyChangeDelay, 
-            _debugPanelBehaviour, _cursorBehaviour,
+            _cursorBehaviour,
             _yaAdsBehaviour, _yaPurchasesBehaviour,
             _levelAsset, _controllersContainer,
             _hudContainerBehaviour, _windowContainer,

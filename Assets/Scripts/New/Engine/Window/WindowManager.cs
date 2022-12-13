@@ -40,6 +40,18 @@ public class WindowManager
         return controller;
     }
 
+    public T GetControllerByType<T>() where T : Window
+    {
+        foreach (var controller in _controllers)
+        {
+            if (controller is T)
+            {
+                return controller as T;
+            }
+        }
+        return null;
+    }
+
     private void AddController(Window controller)
     {
         controller.Init();

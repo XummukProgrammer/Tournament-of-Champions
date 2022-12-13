@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Game
@@ -13,7 +14,6 @@ public class Game
 
     private CursorBehaviour _cursorBehaviour;
 
-    private DebugPanel _debugPanel = new DebugPanel();
     private LoseTimer _loseTimer = new LoseTimer();
 
     private YaAdsManager _yaAdsManager = new YaAdsManager();
@@ -26,15 +26,18 @@ public class Game
 
     private GameComponents _components;
 
+    private DebugWindow debugWindow;
+
     public LoseTimer LoseTimer => _loseTimer;
     public HUDManager HUDManager => _hudManager;
     public WindowManager WindowManager => _windowManager;
+    public DebugWindow DebugWindow => GetDebugWindow();
+
     public Player Player => _player;
 
     public void Init(Camera camera, 
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
-        DebugPanelBehaviour debugPanelBehaviour, 
         CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         LevelAsset levelAsset, Transform controllersContainer,
@@ -47,8 +50,6 @@ public class Game
 
         _camera = camera;
         _cursorBehaviour = cursorBehaviour;
-
-        _debugPanel.Init(debugPanelBehaviour);
 
         _yaAdsManager.Init(this);
         _yaAdsManager.AddReward(new YaAdsAddTimeReward());
@@ -84,7 +85,6 @@ public class Game
 
     public void Update()
     {
-        _debugPanel.Update();
         _loseTimer.Update();
         _hudManager.Update();
         _windowManager.Update();
@@ -162,7 +162,7 @@ public class Game
     private void SetState(GameState state)
     {
         _state = state;
-        _debugPanel.UpdateInfo("state", $"Стейт: {_state}");
+        DebugWindow.SetInfo("state", $"Стейт: {_state}");
     }
 
     public Vector3 GetMousePosition()
@@ -174,5 +174,14 @@ public class Game
     {
         SetState(GameState.Win);
         Winned?.Invoke();
+    }
+
+    private DebugWindow GetDebugWindow()
+    {
+        if (debugWindow == null)
+        {
+            debugWindow = WindowManager.GetControllerByType<DebugWindow>();
+        }
+        return debugWindow;
     }
 }

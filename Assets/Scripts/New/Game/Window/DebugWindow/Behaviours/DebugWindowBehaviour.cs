@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class DebugPanelBehaviour : MonoBehaviour
+public class DebugWindowBehaviour : WindowBehaviour
 {
     [SerializeField] private TMPro.TMP_Text _text;
 
-    public void Toggle()
+    public void SetActive(bool isActive)
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(isActive);
     }
 
     public void SetText(string text)
