@@ -34,7 +34,7 @@ public class Game
         string playerWeaponId, int playerWeaponDamage, int playerWeaponAmmo, float playerWeaponReloadDelay,
         WeaponAccuracyBehaviour playerWeaponAccuracyBehaviour, float playerWeaponAccuracyChangeDelay,
         WeaponBehaviour weaponBehaviour, DebugPanelBehaviour debugPanelBehaviour, 
-        LoseTimerBehaviour loseTimerBehaviour, CursorBehaviour cursorBehaviour,
+        CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         LevelAsset levelAsset, Transform controllersContainer,
         HUDContainerBehaviour hudContainerBehaviour,
@@ -47,8 +47,6 @@ public class Game
         _camera = camera;
         _weaponBehaviour = weaponBehaviour;
         _cursorBehaviour = cursorBehaviour;
-
-        loseTimerBehaviour.Init(_loseTimer);
 
         _debugPanel.Init(debugPanelBehaviour);
 
