@@ -1,35 +1,31 @@
 using UnityEngine;
 
-public class HUD : IController
+public class Window : IController
 {
     private Game _game;
-    private HUDBehaviour _prefab;
-    private HUDBehaviour _behaviour;
-    private HUDLocation _location;
-    private HUDContainerBehaviour _containerBehaviour;
+    private WindowBehaviour _prefab;
+    private Transform _container;
+    private WindowBehaviour _behaviour;
 
-    public HUDBehaviour Behaviour => _behaviour;
     public Game Game => _game;
+    public WindowBehaviour Behaviour => _behaviour;
 
-    public void InitWithParams(Game game, HUDBehaviour prefab, HUDLocation location, HUDContainerBehaviour containerBehaviour)
+    public void InitWithParams(Game game, WindowBehaviour prefab, Transform container)
     {
         _game = game;
         _prefab = prefab;
-        _location = location;
-        _containerBehaviour = containerBehaviour;
+        _container = container;
     }
 
     public void Init()
     {
-        _behaviour = _containerBehaviour.CreateBehaviour(_prefab, _location);
-        _behaviour.Clicked += OnClick;
+        _behaviour = GameObject.Instantiate(_prefab, _container);
         OnInit();
         _behaviour.Init();
     }
 
     public void Deinit()
     {
-        _behaviour.Clicked -= OnClick;
         OnDeinit();
         _behaviour.Deinit();
         GameObject.Destroy(_behaviour.gameObject);
@@ -54,7 +50,6 @@ public class HUD : IController
 
     protected virtual void OnInit() { }
     protected virtual void OnDeinit() { }
-    protected virtual void OnClick() { }
     protected virtual void OnUpdate() { }
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }

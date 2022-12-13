@@ -6,7 +6,6 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private GameAsset _gameAsset;
 
-    [SerializeField] private WinPanelBehaviour _winPanelBehaviour;
     [SerializeField] private DebugPanelBehaviour _debugPanelBehaviour;
     [SerializeField] private LosePanelBehaviour _losePanelBehaviour;
     [SerializeField] private CursorBehaviour _cursorBehaviour;
@@ -18,6 +17,7 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Transform _controllersContainer;
 
     [SerializeField] private HUDContainerBehaviour _hudContainerBehaviour;
+    [SerializeField] private Transform _windowContainer;
 
     Game _game = new Game();
 
@@ -29,7 +29,6 @@ public class Launcher : MonoBehaviour
             return;
         }
 
-        _winPanelBehaviour.Init(_game);
         _losePanelBehaviour.Init(_game);
 
         var gameComponents = Instantiate(_gameAsset.ComponentsPrefab);
@@ -40,7 +39,7 @@ public class Launcher : MonoBehaviour
             _debugPanelBehaviour, _cursorBehaviour,
             _yaAdsBehaviour, _yaPurchasesBehaviour,
             _levelAsset, _controllersContainer,
-            _hudContainerBehaviour,
+            _hudContainerBehaviour, _windowContainer,
             gameComponents);
     }
     

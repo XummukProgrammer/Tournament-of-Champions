@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class HUDManager
+public class WindowManager
 {
-    Game _game;
-    private HUDContainerBehaviour _containerBehaviour;
-    private List<HUD> _controllers = new List<HUD>();
+    private Game _game;
+    private Transform _container;
+    private List<Window> _controllers = new List<Window>();
 
-    public void Init(Game game, HUDContainerBehaviour containerBehaviour)
+    public void Init(Game game, Transform container)
     {
         _game = game;
-        _containerBehaviour = containerBehaviour;
+        _container = container;
     }
 
     public void Deinit()
@@ -31,15 +32,15 @@ public class HUDManager
         }
     }
 
-    public T CreateAndAddController<T>(HUDBehaviour prefab, HUDLocation location) where T : HUD
+    public T CreateAndAddController<T>(WindowBehaviour prefab) where T : Window
     {
         var controller = Activator.CreateInstance<T>();
-        controller.InitWithParams(_game, prefab, location, _containerBehaviour);
+        controller.InitWithParams(_game, prefab, _container);
         AddController(controller);
         return controller;
     }
 
-    private void AddController(HUD controller)
+    private void AddController(Window controller)
     {
         controller.Init();
         _controllers.Add(controller);

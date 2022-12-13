@@ -22,11 +22,13 @@ public class Game
     private Level _level = new Level();
 
     private HUDManager _hudManager = new HUDManager();
+    private WindowManager _windowManager = new WindowManager();
 
     private GameComponents _components;
 
     public LoseTimer LoseTimer => _loseTimer;
     public HUDManager HUDManager => _hudManager;
+    public WindowManager WindowManager => _windowManager;
     public Player Player => _player;
 
     public void Init(Camera camera, 
@@ -36,7 +38,7 @@ public class Game
         CursorBehaviour cursorBehaviour,
         YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         LevelAsset levelAsset, Transform controllersContainer,
-        HUDContainerBehaviour hudContainerBehaviour,
+        HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
         GameComponents components)
     {
         Cursor.visible = false;
@@ -61,6 +63,7 @@ public class Game
         _loseTimer.AddTime(999);
 
         _hudManager.Init(this, hudContainerBehaviour);
+        _windowManager.Init(this, windowContainer);
 
         _components.Init(this);
 
@@ -73,6 +76,7 @@ public class Game
         _yaAdsManager.Deinit();
         _yaPurchasesManager.Deinit();
         _hudManager.Deinit();
+        _windowManager.Deinit();
         _components.Deinit();
 
         _level.Ended -= OnLevelWin;
@@ -83,6 +87,7 @@ public class Game
         _debugPanel.Update();
         _loseTimer.Update();
         _hudManager.Update();
+        _windowManager.Update();
 
         switch (_state)
         {
