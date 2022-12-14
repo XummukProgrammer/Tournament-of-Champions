@@ -19,10 +19,12 @@ public class Window : IController
 
     public void Init()
     {
+        OnInit();
     }
 
     public void Deinit()
     {
+        OnDeinit();
     }
 
     public void Update()

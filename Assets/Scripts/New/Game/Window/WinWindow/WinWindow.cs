@@ -16,6 +16,6 @@ public class WinWindow : Window
 
     private void OnGameWin()
     {
-        Show();
+        OpenByAction();
     }
 }
