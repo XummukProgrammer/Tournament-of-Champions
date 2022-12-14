@@ -59,20 +59,13 @@ public class DebugWindow : Window
     private KeyCode _openKey;
     private DebugWindowInfo _info = new DebugWindowInfo();
 
-    protected override void OnInit()
-    {
-        base.OnInit();
-
-        Hide();
-    }
-
     protected override void OnUpdate()
     {
         base.OnUpdate();
 
         if (Input.GetKeyDown(_openKey))
         {
-            Toggle();
+            OpenByAction();
         }
     }
 
@@ -85,15 +78,6 @@ public class DebugWindow : Window
     {
         _info.Update(id, text);
         UpdateText();
-    }
-
-    private void Toggle()
-    {
-        var behaviour = GetBehaviour();
-        if (behaviour != null)
-        {
-            behaviour.SetActive(!behaviour.gameObject.activeSelf);
-        }
     }
 
     private void UpdateText()

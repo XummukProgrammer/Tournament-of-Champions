@@ -5,8 +5,6 @@ public class WinWindow : Window
         base.OnInit();
 
         Game.Winned += OnGameWin;
-
-        Hide();
     }
 
     protected override void OnDeinit()

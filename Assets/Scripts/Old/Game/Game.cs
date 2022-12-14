@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Game
@@ -28,10 +27,13 @@ public class Game
 
     private DebugWindow debugWindow;
 
+    private ActionsQueue _actionsQueue = new ActionsQueue();
+
     public LoseTimer LoseTimer => _loseTimer;
     public HUDManager HUDManager => _hudManager;
     public WindowManager WindowManager => _windowManager;
     public DebugWindow DebugWindow => GetDebugWindow();
+    public ActionsQueue ActonsQueue => _actionsQueue;
 
     public Player Player => _player;
 
@@ -68,6 +70,8 @@ public class Game
 
         _components.Init(this);
 
+        _actionsQueue.Init(this);
+
         StartGame(levelAsset, controllersContainer, 
             playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay);
     }
@@ -79,6 +83,7 @@ public class Game
         _hudManager.Deinit();
         _windowManager.Deinit();
         _components.Deinit();
+        _actionsQueue.Deinit();
 
         _level.Ended -= OnLevelWin;
     }
@@ -88,6 +93,7 @@ public class Game
         _loseTimer.Update();
         _hudManager.Update();
         _windowManager.Update();
+        _actionsQueue.Update();
 
         switch (_state)
         {
@@ -162,7 +168,8 @@ public class Game
     private void SetState(GameState state)
     {
         _state = state;
-        DebugWindow.SetInfo("state", $"Стейт: {_state}");
+        // TODO: Исправить
+        //DebugWindow.SetInfo("state", $"Стейт: {_state}");
     }
 
     public Vector3 GetMousePosition()

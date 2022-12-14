@@ -5,8 +5,6 @@ public class LoseWindow : Window
         base.OnInit();
 
         Game.Losed += OnGameLose;
-
-        Hide();
     }
 
     protected override void OnDeinit()
@@ -18,6 +16,6 @@ public class LoseWindow : Window
 
     private void OnGameLose()
     {
-        Show();
+        OpenByAction();
     }
 }

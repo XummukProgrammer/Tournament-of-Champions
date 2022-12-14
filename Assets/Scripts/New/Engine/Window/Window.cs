@@ -19,21 +19,29 @@ public class Window : IController
 
     public void Init()
     {
-        _behaviour = GameObject.Instantiate(_prefab, _container);
-        OnInit();
-        _behaviour.Init();
     }
 
     public void Deinit()
     {
-        OnDeinit();
-        _behaviour.Deinit();
-        GameObject.Destroy(_behaviour.gameObject);
     }
 
     public void Update()
     {
         OnUpdate();
+    }
+
+    public void Create()
+    {
+        _behaviour = GameObject.Instantiate(_prefab, _container);
+        OnCreate();
+        _behaviour.Init();
+    }
+
+    public void Destroy()
+    {
+        OnDestroy();
+        _behaviour.Deinit();
+        GameObject.Destroy(_behaviour.gameObject);
     }
 
     public void Show()
@@ -48,8 +56,17 @@ public class Window : IController
         OnHide();
     }
 
+    public void OpenByAction()
+    {
+        var action = new WindowAction();
+        action.Open(this);
+        Game.ActonsQueue.AddAction(action);
+    }
+
     protected virtual void OnInit() { }
     protected virtual void OnDeinit() { }
+    protected virtual void OnCreate() { }
+    protected virtual void OnDestroy() { }
     protected virtual void OnUpdate() { }
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
