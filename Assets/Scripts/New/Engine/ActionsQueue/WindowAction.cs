@@ -16,18 +16,9 @@ public class WindowAction : Action
     {
         base.OnInit();
 
-        OnExecute += OnShowWindow;
-        OnIsFinish += IsCloseWindow;
-        OnFinish += OnCloseWindow;
-    }
-
-    protected override void OnDeinit()
-    {
-        base.OnDeinit();
-
-        OnExecute -= OnShowWindow;
-        OnIsFinish -= IsCloseWindow;
-        OnFinish -= OnCloseWindow;
+        ExecuteDelegate = OnShowWindow;
+        IsFinishDelegate = IsCloseWindow;
+        FinishDelegate = OnCloseWindow;
     }
 
     private void OnShowWindow()
@@ -37,7 +28,7 @@ public class WindowAction : Action
 
     private bool IsCloseWindow()
     {
-        return false;
+        return _controller.IsClose();
     }
 
     private void OnCloseWindow()

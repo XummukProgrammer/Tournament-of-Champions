@@ -168,8 +168,7 @@ public class Game
     private void SetState(GameState state)
     {
         _state = state;
-        // TODO: Исправить
-        //DebugWindow.SetInfo("state", $"Стейт: {_state}");
+        DebugWindow.SetInfo("state", $"Стейт: {_state}");
     }
 
     public Vector3 GetMousePosition()

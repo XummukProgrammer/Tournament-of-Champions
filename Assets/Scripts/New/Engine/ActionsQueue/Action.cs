@@ -15,14 +15,14 @@ public class Action
     public delegate void DefaultDelegate();
     public delegate bool ConditionDelegate();
 
-    public static event ConditionDelegate OnIsStart;
-    public static event DefaultDelegate OnStart;
+    public ConditionDelegate IsStartDelegate;
+    public DefaultDelegate StartDelegate;
     
-    public static event ConditionDelegate OnIsExecute;
-    public static event DefaultDelegate OnExecute;
+    public ConditionDelegate IsExecuteDelegate;
+    public DefaultDelegate ExecuteDelegate;
 
-    public static event ConditionDelegate OnIsFinish;
-    public static event DefaultDelegate OnFinish;
+    public ConditionDelegate IsFinishDelegate;
+    public DefaultDelegate FinishDelegate;
 
     public ActionState State => _state;
     protected Game Game => _game;
@@ -67,7 +67,7 @@ public class Action
         {
             _state = ActionState.Start;
 
-            OnStart?.Invoke();
+            StartDelegate?.Invoke();
         }
     }
 
@@ -77,7 +77,7 @@ public class Action
         {
             _state = ActionState.Execute;
 
-            OnExecute?.Invoke();
+            ExecuteDelegate?.Invoke();
         }
     }
 
@@ -87,7 +87,7 @@ public class Action
         {
             _state = ActionState.Finish;
 
-            OnFinish?.Invoke();
+            FinishDelegate?.Invoke();
         }
     }
 
@@ -98,17 +98,17 @@ public class Action
 
     private bool IsStart()
     {
-        return OnIsStart == null || OnIsStart();
+        return IsStartDelegate == null || IsStartDelegate();
     }
 
     private bool IsExecute()
     {
-        return OnIsExecute == null || OnIsExecute();
+        return IsExecuteDelegate == null || IsExecuteDelegate();
     }
 
     private bool IsFinish()
     {
-        return OnIsFinish == null || OnIsFinish();
+        return IsFinishDelegate == null || IsFinishDelegate();
     }
 
     protected virtual void OnInit() { }

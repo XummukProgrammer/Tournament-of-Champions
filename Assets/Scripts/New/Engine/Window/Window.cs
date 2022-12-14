@@ -60,6 +60,7 @@ public class Window : IController
     {
         var action = new WindowAction();
         action.Open(this);
+
         Game.ActonsQueue.AddAction(action);
     }
 
@@ -70,4 +71,6 @@ public class Window : IController
     protected virtual void OnUpdate() { }
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
+
+    public virtual bool IsClose() { return false;  }
 }

@@ -63,10 +63,22 @@ public class DebugWindow : Window
     {
         base.OnUpdate();
 
-        if (Input.GetKeyDown(_openKey))
+        if (IsKeyPressed() && Behaviour == null)
         {
             OpenByAction();
         }
+    }
+
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+
+        UpdateText();
+    }
+
+    public override bool IsClose()
+    {
+        return IsKeyPressed();
     }
 
     public void SetOpenKey(KeyCode keyCode)
@@ -91,6 +103,15 @@ public class DebugWindow : Window
 
     private DebugWindowBehaviour GetBehaviour()
     {
-        return Behaviour.GetComponent<DebugWindowBehaviour>();
+        if (Behaviour != null)
+        {
+            return Behaviour.GetComponent<DebugWindowBehaviour>();
+        }
+        return null;
+    }
+
+    private bool IsKeyPressed()
+    {
+        return Input.GetKeyDown(_openKey);
     }
 }
