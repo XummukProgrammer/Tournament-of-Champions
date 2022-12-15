@@ -1,21 +1,24 @@
+// TODO: ƒобавить взаимодействие с мини-игрой
+
 public class CoinHUD : HUD
 {
     protected override void OnInit() 
     {
         base.OnInit();
 
-        var scoreAttribute = Game.Player.ScoreAttribute;
-        scoreAttribute.ValueChanged += OnCoinsChange;
+        
+        //var scoreAttribute = Game.Player.ScoreAttribute;
+        //scoreAttribute.ValueChanged += OnCoinsChange;
 
-        SetCoins(scoreAttribute.Value);
+        //SetCoins(scoreAttribute.Value);
     }
 
     protected override void OnDeinit()
     {
         base.OnDeinit();
 
-        var scoreAttribute = Game.Player.ScoreAttribute;
-        scoreAttribute.ValueChanged -= OnCoinsChange;
+        //var scoreAttribute = Game.Player.ScoreAttribute;
+        //scoreAttribute.ValueChanged -= OnCoinsChange;
     }
 
     private void OnCoinsChange(int prevValue, int nextValue)

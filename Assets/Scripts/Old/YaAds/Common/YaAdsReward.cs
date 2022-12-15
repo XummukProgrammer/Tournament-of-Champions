@@ -1,5 +1,5 @@
 public interface IYaAdsReward
 {
-    public void Receive(Game game);
+    public void Receive(EntryPoint entryPoint);
     public string GetPlacement();
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// TODO: ƒобавить взаимодействие с мини-игрой
+
 public class LoseTimerHUD : HUD
 {
     protected override void OnInit()
@@ -21,7 +23,7 @@ public class LoseTimerHUD : HUD
         var behaviour = Behaviour.GetComponent<LoseTimerHUDBehaviour>();
         if (behaviour != null)
         {
-            behaviour.SetTimer(Mathf.Round(Game.LoseTimer.LoseTime));
+            //behaviour.SetTimer(Mathf.Round(Game.LoseTimer.LoseTime));
         }
     }
 }

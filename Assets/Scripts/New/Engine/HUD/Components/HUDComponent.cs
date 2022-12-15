@@ -11,13 +11,13 @@ public class HUDComponent : GameComponent
     public HUDBehaviour Prefab => _prefab;
     public HUD Controller => _controller;
 
-    public override void Init(Game game)
+    public override void Init(MiniGame miniGame)
     {
-        _controller = CreateController(game.HUDManager);
+        _controller = CreateController(miniGame.EntryPoint.HUDManager);
         OnInit();
     }
 
-    public override void Deinit(Game game)
+    public override void Deinit(MiniGame miniGame)
     {
         OnDeinit();
     }

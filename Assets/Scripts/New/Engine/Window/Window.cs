@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class Window : IController
 {
-    private Game _game;
+    private EntryPoint _entryPoint;
     private WindowBehaviour _prefab;
     private Transform _container;
     private WindowBehaviour _behaviour;
 
-    public Game Game => _game;
+    public EntryPoint EntryPoint => _entryPoint;
     public WindowBehaviour Behaviour => _behaviour;
 
-    public void InitWithParams(Game game, WindowBehaviour prefab, Transform container)
+    public void InitWithParams(EntryPoint entryPoint, WindowBehaviour prefab, Transform container)
     {
-        _game = game;
+        _entryPoint = entryPoint;
         _prefab = prefab;
         _container = container;
     }
@@ -63,7 +63,7 @@ public class Window : IController
         var action = new WindowAction();
         action.Open(this);
 
-        Game.ActonsQueue.AddAction(action);
+        EntryPoint.ActonsQueue.AddAction(action);
     }
 
     protected virtual void OnInit() { }

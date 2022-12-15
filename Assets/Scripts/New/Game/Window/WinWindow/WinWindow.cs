@@ -1,17 +1,19 @@
+// TODO: ƒобавить взаимодействие с мини-игрой
+
 public class WinWindow : Window
 {
     protected override void OnInit()
     {
         base.OnInit();
 
-        Game.Winned += OnGameWin;
+        //Game.Winned += OnGameWin;
     }
 
     protected override void OnDeinit()
     {
         base.OnDeinit();
 
-        Game.Winned -= OnGameWin;
+        //Game.Winned -= OnGameWin;
     }
 
     private void OnGameWin()

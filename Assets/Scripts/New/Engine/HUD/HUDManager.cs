@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 public class HUDManager
 {
-    Game _game;
+    private EntryPoint _entryPoint;
     private HUDContainerBehaviour _containerBehaviour;
     private List<HUD> _controllers = new List<HUD>();
 
-    public void Init(Game game, HUDContainerBehaviour containerBehaviour)
+    public void Init(EntryPoint entryPoint, HUDContainerBehaviour containerBehaviour)
     {
-        _game = game;
+        _entryPoint = entryPoint;
         _containerBehaviour = containerBehaviour;
     }
 
@@ -34,7 +34,7 @@ public class HUDManager
     public T CreateAndAddController<T>(HUDBehaviour prefab, HUDLocation location) where T : HUD
     {
         var controller = Activator.CreateInstance<T>();
-        controller.InitWithParams(_game, prefab, location, _containerBehaviour);
+        controller.InitWithParams(_entryPoint, prefab, location, _containerBehaviour);
         AddController(controller);
         return controller;
     }

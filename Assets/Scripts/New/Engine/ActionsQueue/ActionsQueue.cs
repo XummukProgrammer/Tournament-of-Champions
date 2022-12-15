@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 public class ActionsQueue
 {
-    private Game _game;
+    private EntryPoint _entryPoint;
     private List<Action> _actions = new List<Action>();
 
-    public void Init(Game game)
+    public void Init(EntryPoint entryPoint)
     {
-        _game = game;
+        _entryPoint = entryPoint;
     }
 
     public void Deinit()
@@ -40,7 +40,7 @@ public class ActionsQueue
 
     public void AddAction(Action action)
     {
-        action.Init(_game);
+        action.Init(_entryPoint);
         _actions.Add(action);
     }
 }

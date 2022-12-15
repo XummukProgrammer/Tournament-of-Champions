@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WindowManager
 {
-    private Game _game;
+    private EntryPoint _entryPoint;
     private Transform _container;
     private List<Window> _controllers = new List<Window>();
 
-    public void Init(Game game, Transform container)
+    public void Init(EntryPoint entryPoint, Transform container)
     {
-        _game = game;
+        _entryPoint = entryPoint;
         _container = container;
     }
 
@@ -35,7 +35,7 @@ public class WindowManager
     public T CreateAndAddController<T>(WindowBehaviour prefab) where T : Window
     {
         var controller = Activator.CreateInstance<T>();
-        controller.InitWithParams(_game, prefab, _container);
+        controller.InitWithParams(_entryPoint, prefab, _container);
         AddController(controller);
         return controller;
     }

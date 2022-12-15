@@ -9,7 +9,7 @@ public class WindowAction : Action
 
     public void OpenByType<T>() where T : Window
     {
-        Open(Game.WindowManager.GetControllerByType<T>());
+        Open(EntryPoint.WindowManager.GetControllerByType<T>());
     }
 
     protected override void OnInit()

@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class GameComponent : MonoBehaviour
 {
-    public virtual void Init(Game game) { }
-    public virtual void Deinit(Game game) { }
+    public virtual void Init(MiniGame miniGame) { }
+    public virtual void Deinit(MiniGame miniGame) { }
 }

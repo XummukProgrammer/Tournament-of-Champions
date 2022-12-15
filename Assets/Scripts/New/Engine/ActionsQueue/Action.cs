@@ -9,7 +9,7 @@ public enum ActionState
 
 public class Action
 {
-    private Game _game;
+    private EntryPoint _entryPoint;
     private ActionState _state = ActionState.Active;
 
     public delegate void DefaultDelegate();
@@ -25,11 +25,11 @@ public class Action
     public DefaultDelegate FinishDelegate;
 
     public ActionState State => _state;
-    protected Game Game => _game;
+    protected EntryPoint EntryPoint => _entryPoint;
 
-    public void Init(Game game)
+    public void Init(EntryPoint entryPoint)
     {
-        _game = game;
+        _entryPoint = entryPoint;
         OnInit();
     }
 

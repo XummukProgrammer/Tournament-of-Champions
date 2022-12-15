@@ -5,11 +5,11 @@ public class YaAdsManager
     private List<IYaAdsReward> _rewards = new List<IYaAdsReward>();
 
     private YandexSDK _sdk;
-    private Game _game;
+    private EntryPoint _entryPoint;
 
-    public void Init(Game game)
+    public void Init(EntryPoint entryPoint)
     {
-        _game = game;
+        _entryPoint = entryPoint;
 
         _sdk = YandexSDK.instance;
         _sdk.onInterstitialShown += OnInterstitialShown;
@@ -46,7 +46,7 @@ public class YaAdsManager
         {
             if (reward.GetPlacement() == placement)
             {
-                reward.Receive(_game);
+                reward.Receive(_entryPoint);
             }
         }
     }

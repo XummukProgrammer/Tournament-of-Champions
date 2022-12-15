@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class HUD : IController
 {
-    private Game _game;
+    private EntryPoint _entryPoint;
     private HUDBehaviour _prefab;
     private HUDBehaviour _behaviour;
     private HUDLocation _location;
     private HUDContainerBehaviour _containerBehaviour;
 
     public HUDBehaviour Behaviour => _behaviour;
-    public Game Game => _game;
+    public EntryPoint EntryPoint => _entryPoint;
 
-    public void InitWithParams(Game game, HUDBehaviour prefab, HUDLocation location, HUDContainerBehaviour containerBehaviour)
+    public void InitWithParams(EntryPoint entryPoint, HUDBehaviour prefab, HUDLocation location, HUDContainerBehaviour containerBehaviour)
     {
-        _game = game;
+        _entryPoint = entryPoint;
         _prefab = prefab;
         _location = location;
         _containerBehaviour = containerBehaviour;

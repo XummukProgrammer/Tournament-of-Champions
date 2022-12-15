@@ -4,16 +4,16 @@ public class GameComponents : MonoBehaviour
 {
     private GameComponent[] _components;
 
-    private Game _game;
+    private MiniGame _miniGame;
 
-    public void Init(Game game)
+    public void Init(MiniGame miniGame)
     {
-        _game = game;
+        _miniGame = miniGame;
         _components = GetComponentsInChildren<GameComponent>();
 
         foreach (var component in _components)
         {
-            component.Init(_game);
+            component.Init(_miniGame);
         }
     }
 
@@ -21,7 +21,7 @@ public class GameComponents : MonoBehaviour
     {
         foreach (var component in _components)
         {
-            component.Deinit(_game);
+            component.Deinit(_miniGame);
         }
     }
 }

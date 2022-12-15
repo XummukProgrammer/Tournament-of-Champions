@@ -1,3 +1,5 @@
+// TODO: ƒобавить взаимодействие с мини-игрой
+
 public class YaAddTimePurchase : IYaPurchase
 {
     public string GetId()
@@ -5,8 +7,8 @@ public class YaAddTimePurchase : IYaPurchase
         return "test";
     }
 
-    public void Receive(Game game)
+    public void Receive(EntryPoint entryPoint)
     {
-        game.LoseTimer.AddTime(999);
+        //game.LoseTimer.AddTime(999);
     }
 }

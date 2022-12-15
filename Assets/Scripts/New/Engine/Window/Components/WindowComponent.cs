@@ -9,13 +9,13 @@ public class WindowComponent : GameComponent
     public WindowBehaviour Prefab => _prefab;
     public Window Controller => _controller;
 
-    public override void Init(Game game)
+    public override void Init(MiniGame miniGame)
     {
-        _controller = CreateController(game.WindowManager);
+        _controller = CreateController(miniGame.EntryPoint.WindowManager);
         OnInit();
     }
 
-    public override void Deinit(Game game)
+    public override void Deinit(MiniGame miniGame)
     {
         OnDeinit();
     }

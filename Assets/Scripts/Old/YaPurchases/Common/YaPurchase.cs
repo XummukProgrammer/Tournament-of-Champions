@@ -1,5 +1,5 @@
 public interface IYaPurchase
 {
-    public void Receive(Game game);
+    public void Receive(EntryPoint entryPoint);
     public string GetId();
 }

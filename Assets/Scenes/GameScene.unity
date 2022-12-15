@@ -276,15 +276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcffe015987766542b0e54add0edabdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _storage: {fileID: 11400000, guid: e7f62d02e2065e14fba427872a4d4452, type: 2}
   _camera: {fileID: 519420031}
-  _gameAsset: {fileID: 11400000, guid: c0de45e657b72244eb2a67932b968ffe, type: 2}
-  _controllersContainer: {fileID: 440728114}
-  _debugPanelBehaviour: {fileID: 0}
   _cursorBehaviour: {fileID: 1577459490}
   _yaAdsBehaviour: {fileID: 1694171777}
   _yaPurchasesBehaviour: {fileID: 2032627162}
-  _levelAsset: {fileID: 11400000, guid: 134a6fb49e6a2e042a198832a47cb4fa, type: 2}
+  _miniGameEntryBehaviours:
+  - {fileID: 4190365298656005531, guid: 5c86b699e35d1244e8f5935fa89504dc, type: 3}
+  _startMiniGameId: ShootingRange
   _hudContainerBehaviour: {fileID: 111475830}
   _windowContainer: {fileID: 1142958585}
 --- !u!4 &361338018

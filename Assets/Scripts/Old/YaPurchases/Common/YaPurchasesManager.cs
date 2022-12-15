@@ -5,11 +5,11 @@ public class YaPurchasesManager
     private List<IYaPurchase> _purchases = new List<IYaPurchase>();
 
     private YandexSDK _sdk;
-    private Game _game;
+    private EntryPoint _entryPoint;
 
-    public void Init(Game game)
+    public void Init(EntryPoint entryPoint)
     {
-        _game = game;
+        _entryPoint = entryPoint;
 
         _sdk = YandexSDK.instance;
         _sdk.onPurchaseSuccess += OnPurchaseSuccess;
@@ -32,7 +32,7 @@ public class YaPurchasesManager
         {
             if (purchase.GetId() == id)
             {
-                purchase.Receive(_game);
+                purchase.Receive(_entryPoint);
             }
         }
     }
