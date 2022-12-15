@@ -43,7 +43,11 @@ public class Window : IController
     {
         OnDestroy();
         _behaviour.Deinit();
-        GameObject.Destroy(_behaviour.gameObject);
+
+        if (_behaviour.gameObject)
+        {
+            GameObject.Destroy(_behaviour.gameObject);
+        }
     }
 
     public void Show()

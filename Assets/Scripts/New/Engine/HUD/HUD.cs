@@ -32,7 +32,11 @@ public class HUD : IController
         _behaviour.Clicked -= OnClick;
         OnDeinit();
         _behaviour.Deinit();
-        GameObject.Destroy(_behaviour.gameObject);
+
+        if (_behaviour.gameObject)
+        {
+            GameObject.Destroy(_behaviour.gameObject);
+        }
     }
 
     public void Update()
