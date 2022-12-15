@@ -7,15 +7,17 @@ public class ShootingRangeMiniGame : MiniGame
     public System.Action Losed;
 
     private Level _level = new Level();
-    private LoseTimer _loseTimer = new LoseTimer();
 
     private bool _isWin = false;
-    private bool _isLose = false;
+
+    private ShootingRangePlayerComponent _playerComponent;
+    private ShootingRangeLevelComponent _levelComponent;
+    private ShootingRangeLoseTimerComponent _loseTimerComponent;
 
     public Level Level => _level;
-    public LoseTimer LoseTimer => _loseTimer;
     public ShootingRangePlayerComponent PlayerComponent => GetPlayerComponent();
     public ShootingRangeLevelComponent LevelComponent => GetLevelComponent();
+    public ShootingRangeLoseTimerComponent LoseTimerComponent => GetLoseTimerComponent();
 
     public void DestroyTarget(Target controller)
     {
@@ -41,12 +43,12 @@ public class ShootingRangeMiniGame : MiniGame
         return (null, null);
     }
 
-    protected override void OnInit() 
+    protected override void OnInit()
     {
         base.OnInit();
     }
 
-    protected override void OnDeinit() 
+    protected override void OnDeinit()
     {
         base.OnDeinit();
     }
@@ -58,29 +60,26 @@ public class ShootingRangeMiniGame : MiniGame
         if (State == MiniGameState.InProgress)
         {
             _level.Update();
-            _loseTimer.Update();
         }
     }
 
-    protected override void OnLoadResources() 
+    protected override void OnLoadResources()
     {
         base.OnLoadResources();
     }
 
-    protected override void OnUnloadResources() 
+    protected override void OnUnloadResources()
     {
         base.OnUnloadResources();
     }
 
-    protected override void OnInProgress() 
+    protected override void OnInProgress()
     {
         base.OnInProgress();
 
         _level.Init(LevelComponent.Asset);
 
         _level.Ended += OnLevelWin;
-
-        _loseTimer.AddTime(999);
     }
 
     protected override void OnWin()
@@ -90,29 +89,29 @@ public class ShootingRangeMiniGame : MiniGame
         Winned?.Invoke();
     }
 
-    protected override void OnShowWinWindow() 
+    protected override void OnShowWinWindow()
     {
         base.OnShowWinWindow();
     }
 
-    protected override void OnLose() 
+    protected override void OnLose()
     {
         base.OnLose();
 
         Losed?.Invoke();
     }
 
-    protected override void OnShowLoseWindow() 
+    protected override void OnShowLoseWindow()
     {
         base.OnShowLoseWindow();
     }
 
-    protected override void OnShowRewardWindow() 
+    protected override void OnShowRewardWindow()
     {
         base.OnShowRewardWindow();
     }
 
-    protected override void OnDisable() 
+    protected override void OnDisable()
     {
         base.OnDisable();
 
@@ -120,39 +119,39 @@ public class ShootingRangeMiniGame : MiniGame
         _level.Deinit();
     }
 
-    protected override bool IsResourcesLoaded() 
-    { 
-        return true; 
-    }
-
-    protected override bool IsResourcesUnloaded() 
-    { 
-        return true; 
-    }
-
-    protected override bool IsWin() 
-    { 
-        return _isWin; 
-    }
-
-    protected override bool IsLose() 
+    protected override bool IsResourcesLoaded()
     {
-        return _loseTimer.IsLose();
+        return true;
     }
 
-    protected override bool IsWinWindowShowed() 
-    { 
-        return false; 
+    protected override bool IsResourcesUnloaded()
+    {
+        return true;
     }
 
-    protected override bool IsLoseWindowShowed() 
-    { 
-        return false; 
+    protected override bool IsWin()
+    {
+        return _isWin;
     }
 
-    protected override bool IsRewardWindowShowed() 
-    { 
-        return false; 
+    protected override bool IsLose()
+    {
+        return GetLoseTimerComponent().IsLose();
+    }
+
+    protected override bool IsWinWindowShowed()
+    {
+        return false;
+    }
+
+    protected override bool IsLoseWindowShowed()
+    {
+        return false;
+    }
+
+    protected override bool IsRewardWindowShowed()
+    {
+        return false;
     }
 
     private void OnLevelWin()
@@ -162,11 +161,28 @@ public class ShootingRangeMiniGame : MiniGame
 
     private ShootingRangePlayerComponent GetPlayerComponent()
     {
-        return Components.GetComponentInChildren<ShootingRangePlayerComponent>();
+        if (_playerComponent == null)
+        {
+            _playerComponent = Components.GetComponentInChildren<ShootingRangePlayerComponent>();
+        }
+        return _playerComponent;
     }
 
     private ShootingRangeLevelComponent GetLevelComponent()
     {
-        return Components.GetComponentInChildren<ShootingRangeLevelComponent>();
+        if (_levelComponent == null)
+        {
+            _levelComponent = Components.GetComponentInChildren<ShootingRangeLevelComponent>();
+        }
+        return _levelComponent;
+    }
+
+    private ShootingRangeLoseTimerComponent GetLoseTimerComponent()
+    {
+        if (_loseTimerComponent == null)
+        {
+            _loseTimerComponent = Components.GetComponentInChildren<ShootingRangeLoseTimerComponent>();
+        }
+        return _loseTimerComponent;
     }
 }

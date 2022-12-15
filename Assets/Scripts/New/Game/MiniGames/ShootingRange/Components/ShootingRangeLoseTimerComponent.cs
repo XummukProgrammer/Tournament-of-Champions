@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class LoseTimer
+public class ShootingRangeLoseTimerComponent : GameComponent
 {
+    [SerializeField] private float _startTime = 100;
+
     private float _loseTime;
 
     public float LoseTime => _loseTime;
@@ -9,6 +11,11 @@ public class LoseTimer
     public void AddTime(float time)
     {
         _loseTime += time;
+    }
+
+    private void Awake()
+    {
+        _loseTime = _startTime;
     }
 
     public void Update()

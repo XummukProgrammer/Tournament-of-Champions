@@ -14,6 +14,6 @@ public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent
 
     private void UpdateTimer()
     {
-        SetTimer((MiniGame as ShootingRangeMiniGame).LoseTimer.LoseTime);
+        SetTimer((MiniGame as ShootingRangeMiniGame).LoseTimerComponent.LoseTime);
     }
 }
