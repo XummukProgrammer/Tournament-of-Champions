@@ -6,9 +6,6 @@ public class EntryPoint
 
     private CursorBehaviour _cursorBehaviour;
 
-    private YaAdsManager _yaAdsManager = new YaAdsManager();
-    private YaPurchasesManager _yaPurchasesManager = new YaPurchasesManager();
-
     private HUDManager _hudManager = new HUDManager();
     private WindowManager _windowManager = new WindowManager();
     private ActionsQueue _actionsQueue = new ActionsQueue();
@@ -24,7 +21,6 @@ public class EntryPoint
     public CursorBehaviour CursorBehaviour => _cursorBehaviour;
 
     public void Init(Camera camera, CursorBehaviour cursorBehaviour,
-        YaAdsBehaviour yaAdsBehaviour, YaPurchasesBehaviour yaPurchasesBehaviour,
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
         MiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId)
     {
@@ -34,14 +30,6 @@ public class EntryPoint
         _cursorBehaviour = cursorBehaviour;
         _miniGameEntryBehaviours = miniGameEntryBehaviours;
         _startMiniGameId = startMiniGameId;
-
-        _yaAdsManager.Init(this);
-        _yaAdsManager.AddReward(new YaAdsAddTimeReward());
-        yaAdsBehaviour.Init(_yaAdsManager);
-
-        _yaPurchasesManager.Init(this);
-        _yaPurchasesManager.AddPurchase(new YaAddTimePurchase());
-        yaPurchasesBehaviour.Init(_yaPurchasesManager);
 
         _hudManager.Init(this, hudContainerBehaviour);
         _windowManager.Init(this, windowContainer);
@@ -53,8 +41,6 @@ public class EntryPoint
 
     public void Deinit()
     {
-        _yaAdsManager.Deinit();
-        _yaPurchasesManager.Deinit();
         _hudManager.Deinit();
         _windowManager.Deinit();
         _actionsQueue.Deinit();

@@ -6,9 +6,6 @@ public class Launcher : MonoBehaviour
 
     [SerializeField] private CursorBehaviour _cursorBehaviour;
 
-    [SerializeField] private YaAdsBehaviour _yaAdsBehaviour;
-    [SerializeField] private YaPurchasesBehaviour _yaPurchasesBehaviour;
-
     [SerializeField] private MiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     [SerializeField] private string _startMiniGameId;
 
@@ -20,8 +17,7 @@ public class Launcher : MonoBehaviour
     private void OnEnable()
     {
         _entryPoint.Init(_camera, 
-            _cursorBehaviour, 
-            _yaAdsBehaviour, _yaPurchasesBehaviour, 
+            _cursorBehaviour,
             _hudContainerBehaviour, _windowContainer, 
             _miniGameEntryBehaviours, _startMiniGameId);
     }
