@@ -73,6 +73,7 @@ public class EntryPoint
             {
                 var entry = GameObject.Instantiate(miniGameEntryBehaviour);
                 _currentMiniGame = entry.CreateMiniGame(_miniGamesManager);
+                _currentMiniGame.Start();
             }
         }
     }

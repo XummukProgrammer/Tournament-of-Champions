@@ -4,4 +4,9 @@ public class CoinHUDComponent : HUDComponent
     {
         return hudManager.CreateAndAddController<CoinHUD>(Prefab, Location);
     }
+
+    protected void SetScoreAttribute(ScoreAttribute scoreAttribute)
+    {
+        (Controller as CoinHUD).SetScoreAttribute(scoreAttribute);
+    }
 }

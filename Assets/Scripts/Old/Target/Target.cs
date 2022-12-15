@@ -3,7 +3,6 @@ using UnityEngine;
 public class Target : IController, IShotable
 {
     private TargetBehaviour _prefab;
-    private Transform _container;
     private Vector3 _position;
     private TargetBehaviour _behaviour;
 
@@ -20,11 +19,10 @@ public class Target : IController, IShotable
 
     public TargetBehaviour Behaviour => _behaviour;
 
-    public void InitWithParams(Transform container, TargetBehaviour prefab, Vector3 position, 
+    public void InitWithParams(TargetBehaviour prefab, Vector3 position, 
         AudioClip[] hitSounds, AudioClip explosionSound, 
         ParticleSystem hitParticle, int healthValue, TargetZoneScore[] zoneScores)
     {
-        _container = container;
         _prefab = prefab;
         _position = position;
         _hitSounds = hitSounds;
@@ -36,7 +34,8 @@ public class Target : IController, IShotable
 
     public void Init()
     {
-        _behaviour = GameObject.Instantiate(_prefab, _position, Quaternion.identity, _container);
+        _behaviour = GameObject.Instantiate(_prefab);
+        _behaviour.transform.position = _position;
         _behaviour.Init(this);
 
         _healthAttribute.GiveValue(_healthValue);

@@ -5,11 +5,11 @@ public class LevelWave
 {
     private List<IController> _controllers = new List<IController>();
 
-    public void Init(Transform container, LevelWaveBehaviour behaviour)
+    public void Init(LevelWaveBehaviour behaviour)
     {
         foreach (var element in behaviour.GetElements())
         {
-            var controller = element.CreateController(container);
+            var controller = element.CreateController();
             if (controller != null)
             {
                 controller.Init();

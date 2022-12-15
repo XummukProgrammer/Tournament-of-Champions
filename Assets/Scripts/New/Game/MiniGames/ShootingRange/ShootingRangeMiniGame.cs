@@ -14,6 +14,8 @@ public class ShootingRangeMiniGame : MiniGame
 
     public Level Level => _level;
     public LoseTimer LoseTimer => _loseTimer;
+    public ShootingRangePlayerComponent PlayerComponent => GetPlayerComponent();
+    public ShootingRangeLevelComponent LevelComponent => GetLevelComponent();
 
     public void DestroyTarget(Target controller)
     {
@@ -53,8 +55,11 @@ public class ShootingRangeMiniGame : MiniGame
     {
         base.OnUpdate();
 
-        _level.Update();
-        _loseTimer.Update();
+        if (State == MiniGameState.InProgress)
+        {
+            _level.Update();
+            _loseTimer.Update();
+        }
     }
 
     protected override void OnLoadResources() 
@@ -71,10 +76,7 @@ public class ShootingRangeMiniGame : MiniGame
     {
         base.OnInProgress();
 
-        //_player.Init(this, playerWeaponId, playerWeaponDamage, playerWeaponAmmo, playerWeaponReloadDelay, playerWeaponAccuracyBehaviour, playerWeaponAccuracyChangeDelay,
-        //    _cursorBehaviour);
-
-        //_level.Init(levelAsset, controllersContainer);
+        _level.Init(LevelComponent.Asset);
 
         _level.Ended += OnLevelWin;
 
@@ -156,5 +158,15 @@ public class ShootingRangeMiniGame : MiniGame
     private void OnLevelWin()
     {
         _isWin = true;
+    }
+
+    private ShootingRangePlayerComponent GetPlayerComponent()
+    {
+        return Components.GetComponentInChildren<ShootingRangePlayerComponent>();
+    }
+
+    private ShootingRangeLevelComponent GetLevelComponent()
+    {
+        return Components.GetComponentInChildren<ShootingRangeLevelComponent>();
     }
 }

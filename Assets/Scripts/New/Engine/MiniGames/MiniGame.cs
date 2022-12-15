@@ -6,6 +6,7 @@ public class MiniGame
 
     public EntryPoint EntryPoint => _entryPoint;
     public MiniGameState State => _state;
+    public GameComponents Components => _components;
 
     public void Init(EntryPoint entryPoint, GameComponents components)
     {

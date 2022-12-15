@@ -5,15 +5,13 @@ public class Level
     public System.Action<int> WaveChanged;
     public System.Action Ended;
 
-    private Transform _container;
     private LevelAsset _asset;
     private LevelWave _levelWave = new LevelWave();
     private int _currentWave;
 
-    public void Init(LevelAsset asset, Transform container)
+    public void Init(LevelAsset asset)
     {
         _asset = asset;
-        _container = container;
 
         TryChangeWave(0);
     }
@@ -49,7 +47,7 @@ public class Level
         _currentWave = index;
 
         var waveBehaviour = GameObject.Instantiate(_asset.WaveBehaviours[index]);
-        _levelWave.Init(_container, waveBehaviour);
+        _levelWave.Init(waveBehaviour);
         GameObject.Destroy(waveBehaviour.gameObject);
 
         return true;
