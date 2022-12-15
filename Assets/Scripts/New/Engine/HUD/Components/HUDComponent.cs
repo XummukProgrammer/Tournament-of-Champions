@@ -11,15 +11,11 @@ public class HUDComponent : GameComponent
     public HUDBehaviour Prefab => _prefab;
     public HUD Controller => _controller;
 
-    public override void Init(MiniGame miniGame)
+    protected override void OnInit()
     {
-        _controller = CreateController(miniGame.EntryPoint.HUDManager);
-        OnInit();
-    }
+        base.OnInit();
 
-    public override void Deinit(MiniGame miniGame)
-    {
-        OnDeinit();
+        _controller = CreateController(MiniGame.EntryPoint.HUDManager);
     }
 
     public void Show()
@@ -35,8 +31,6 @@ public class HUDComponent : GameComponent
     }
 
     protected virtual HUD CreateController(HUDManager hudManager) { return null; }
-    protected virtual void OnInit() { }
-    protected virtual void OnDeinit() { }
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
 }

@@ -13,6 +13,7 @@ public class EntryPoint
 
     private MiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     private string _startMiniGameId;
+    private MiniGame _currentMiniGame;
 
     private bool _isDisabled = false;
 
@@ -20,6 +21,7 @@ public class EntryPoint
     public WindowManager WindowManager => _windowManager;
     public ActionsQueue ActonsQueue => _actionsQueue;
     public MiniGamesManager MiniGamesManager => _miniGamesManager;
+    public MiniGame CurrentMiniGame => _currentMiniGame;
     public CursorBehaviour CursorBehaviour => _cursorBehaviour;
     public bool IsDisabled => _isDisabled;
 
@@ -69,7 +71,8 @@ public class EntryPoint
         {
             if (miniGameEntryBehaviour.name == miniGameId)
             {
-                miniGameEntryBehaviour.CreateMiniGame(_miniGamesManager);
+                var entry = GameObject.Instantiate(miniGameEntryBehaviour);
+                _currentMiniGame = entry.CreateMiniGame(_miniGamesManager);
             }
         }
     }

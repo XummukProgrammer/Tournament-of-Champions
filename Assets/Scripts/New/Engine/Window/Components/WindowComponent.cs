@@ -9,15 +9,11 @@ public class WindowComponent : GameComponent
     public WindowBehaviour Prefab => _prefab;
     public Window Controller => _controller;
 
-    public override void Init(MiniGame miniGame)
+    protected override void OnInit()
     {
-        _controller = CreateController(miniGame.EntryPoint.WindowManager);
-        OnInit();
-    }
+        base.OnInit();
 
-    public override void Deinit(MiniGame miniGame)
-    {
-        OnDeinit();
+        _controller = CreateController(MiniGame.EntryPoint.WindowManager);
     }
 
     public void Show()
@@ -33,8 +29,6 @@ public class WindowComponent : GameComponent
     }
 
     protected virtual Window CreateController(WindowManager windowManager) { return null; }
-    protected virtual void OnInit() { }
-    protected virtual void OnDeinit() { }
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
 }

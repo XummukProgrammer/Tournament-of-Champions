@@ -6,14 +6,12 @@ public class ShootingRangeMiniGame : MiniGame
     public System.Action Winned;
     public System.Action Losed;
 
-    private Player _player = new Player();
     private Level _level = new Level();
     private LoseTimer _loseTimer = new LoseTimer();
 
     private bool _isWin = false;
     private bool _isLose = false;
 
-    public Player Player => _player;
     public Level Level => _level;
     public LoseTimer LoseTimer => _loseTimer;
 
@@ -55,7 +53,6 @@ public class ShootingRangeMiniGame : MiniGame
     {
         base.OnUpdate();
 
-        _player.Update();
         _level.Update();
         _loseTimer.Update();
     }

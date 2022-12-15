@@ -21,7 +21,7 @@ public class GameComponents : MonoBehaviour
     {
         foreach (var component in _components)
         {
-            component.Deinit(_miniGame);
+            component.Deinit();
         }
     }
 }
