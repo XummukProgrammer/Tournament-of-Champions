@@ -46,9 +46,8 @@ public class Level
 
         _currentWave = index;
 
-        var waveBehaviour = GameObject.Instantiate(_asset.WaveBehaviours[index]);
+        var waveBehaviour = _asset.WaveBehaviours[index];
         _levelWave.Init(waveBehaviour);
-        GameObject.Destroy(waveBehaviour.gameObject);
 
         return true;
     }
