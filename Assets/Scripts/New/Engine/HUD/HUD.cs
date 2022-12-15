@@ -33,7 +33,7 @@ public class HUD : IController
         OnDeinit();
         _behaviour.Deinit();
 
-        if (_behaviour.gameObject)
+        if (!_entryPoint.IsDisabled)
         {
             GameObject.Destroy(_behaviour.gameObject);
         }

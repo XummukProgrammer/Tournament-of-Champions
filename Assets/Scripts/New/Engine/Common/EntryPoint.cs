@@ -14,11 +14,14 @@ public class EntryPoint
     private MiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     private string _startMiniGameId;
 
+    private bool _isDisabled = false;
+
     public HUDManager HUDManager => _hudManager;
     public WindowManager WindowManager => _windowManager;
     public ActionsQueue ActonsQueue => _actionsQueue;
     public MiniGamesManager MiniGamesManager => _miniGamesManager;
     public CursorBehaviour CursorBehaviour => _cursorBehaviour;
+    public bool IsDisabled => _isDisabled;
 
     public void Init(Camera camera, CursorBehaviour cursorBehaviour,
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
@@ -69,5 +72,10 @@ public class EntryPoint
                 miniGameEntryBehaviour.CreateMiniGame(_miniGamesManager);
             }
         }
+    }
+
+    public void OnDisabled()
+    {
+        _isDisabled = true;
     }
 }

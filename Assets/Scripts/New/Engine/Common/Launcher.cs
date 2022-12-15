@@ -24,6 +24,7 @@ public class Launcher : MonoBehaviour
 
     private void OnDisable()
     {
+        _entryPoint.OnDisabled();
         _entryPoint.Deinit();
     }
 
