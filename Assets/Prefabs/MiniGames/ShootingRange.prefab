@@ -332,7 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8704657520198684993}
-  - component: {fileID: 1064686926079111241}
+  - component: {fileID: 5483669396304712323}
   m_Layer: 0
   m_Name: LoseTimerHUD
   m_TagString: Untagged
@@ -355,7 +355,7 @@ Transform:
   m_Father: {fileID: 3341328485983146364}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1064686926079111241
+--- !u!114 &5483669396304712323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5705750724384462282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d117997bcd0e5dc42bb0dd3ee5a70082, type: 3}
+  m_Script: {fileID: 11500000, guid: 1840694118a9c6b489d6fbb7d1bbb913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _location: 1
