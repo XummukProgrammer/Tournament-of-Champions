@@ -6,4 +6,9 @@ public class WeaponHUDComponent : HUDComponent
     {
         return hudManager.CreateAndAddController<WeaponHUD>(Prefab, Location);
     }
+
+    public void SetAmmo(int ammo)
+    {
+        (Controller as WeaponHUD).SetAmmo(ammo);
+    }
 }
