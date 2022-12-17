@@ -1,15 +1,17 @@
 using UnityEngine;
 
-public class HUDComponent<T> : GameComponent<T> where T : MiniGame
+public class HUDComponent<TController, TMiniGame> : GameComponent<TMiniGame> 
+    where TMiniGame : MiniGame 
+    where TController : HUD
 {
     [SerializeField] private HUDLocation _location;
     [SerializeField] private HUDBehaviour _prefab;
 
-    private HUD _controller;
+    private TController _controller;
 
     public HUDLocation Location => _location;
     public HUDBehaviour Prefab => _prefab;
-    public HUD Controller => _controller;
+    public TController Controller => _controller;
 
     protected override void OnInit()
     {
@@ -30,7 +32,11 @@ public class HUDComponent<T> : GameComponent<T> where T : MiniGame
         OnHide();
     }
 
-    protected virtual HUD CreateController(HUDManager hudManager) { return null; }
+    private TController CreateController(HUDManager hudManager) 
+    { 
+        return hudManager.CreateAndAddController<TController>(Prefab, Location); 
+    }
+
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
 }
