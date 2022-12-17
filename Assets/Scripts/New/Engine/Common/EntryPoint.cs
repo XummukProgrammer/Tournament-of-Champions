@@ -11,7 +11,7 @@ public class EntryPoint
     private ActionsQueue _actionsQueue = new ActionsQueue();
     private MiniGamesManager _miniGamesManager = new MiniGamesManager();
 
-    private MiniGameEntryBehaviour[] _miniGameEntryBehaviours;
+    private BaseMiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     private string _startMiniGameId;
     private MiniGame _currentMiniGame;
 
@@ -27,7 +27,7 @@ public class EntryPoint
 
     public void Init(Camera camera, CursorBehaviour cursorBehaviour,
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
-        MiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId)
+        BaseMiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId)
     {
         Cursor.visible = false;
 

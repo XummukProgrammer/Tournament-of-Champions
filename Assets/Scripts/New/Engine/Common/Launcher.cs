@@ -6,7 +6,7 @@ public class Launcher : MonoBehaviour
 
     [SerializeField] private CursorBehaviour _cursorBehaviour;
 
-    [SerializeField] private MiniGameEntryBehaviour[] _miniGameEntryBehaviours;
+    [SerializeField] private BaseMiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     [SerializeField] private string _startMiniGameId;
 
     [SerializeField] private HUDContainerBehaviour _hudContainerBehaviour;

@@ -1,7 +1,3 @@
-public class ShootingRangeMiniGameEntryBehaviour : MiniGameEntryBehaviour
+public class ShootingRangeMiniGameEntryBehaviour : MiniGameEntryBehaviour<ShootingRangeMiniGame>
 {
-    public override MiniGame CreateMiniGame(MiniGamesManager miniGamesManager)
-    {
-        return miniGamesManager.CreateAndAddMiniGame<ShootingRangeMiniGame>(Components);
-    }
 }
