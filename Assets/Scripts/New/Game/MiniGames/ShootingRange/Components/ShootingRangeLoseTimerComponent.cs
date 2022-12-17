@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootingRangeLoseTimerComponent : GameComponent
+public class ShootingRangeLoseTimerComponent : GameComponent<ShootingRangeMiniGame>
 {
     [SerializeField] private float _startTime = 100;
 

@@ -1,23 +1,30 @@
 using UnityEngine;
 
-public class GameComponent : MonoBehaviour
+public class BaseGameComponent : MonoBehaviour
 {
-    private MiniGame _miniGame;
+    public virtual void Init(MiniGame miniGame) { }
+    public virtual void Deinit() { }
 
-    protected MiniGame MiniGame => _miniGame;
+    public virtual void OnUpdate() { }
+}
 
-    public void Init(MiniGame miniGame) 
+public class GameComponent<T> : BaseGameComponent where T : MiniGame
+{
+    private T _miniGame;
+
+    protected T MiniGame => _miniGame;
+
+    public override void Init(MiniGame miniGame) 
     {
-        _miniGame = miniGame;
+        _miniGame = miniGame as T;
         OnInit();
     }
 
-    public void Deinit() 
+    public override void Deinit() 
     {
         OnDeinit();
     }
 
     protected virtual void OnInit() { }
     protected virtual void OnDeinit() { }
-    public virtual void OnUpdate() { }
 }

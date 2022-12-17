@@ -1,10 +1,10 @@
-public class ShootingRangeWeaponHUDComponent : WeaponHUDComponent
+public class ShootingRangeWeaponHUDComponent : WeaponHUDComponent<ShootingRangeMiniGame>
 {
     protected override void OnInit()
     {
         base.OnInit();
 
-        var weapon = (MiniGame as ShootingRangeMiniGame).PlayerComponent.Weapon;
+        var weapon = MiniGame.PlayerComponent.Weapon;
         weapon.AmmoChanged += OnAmmoChanged;
 
         SetAmmo(weapon.CurrentAmmo);
@@ -16,7 +16,7 @@ public class ShootingRangeWeaponHUDComponent : WeaponHUDComponent
 
         if (!MiniGame.EntryPoint.IsDisabled)
         {
-            var weapon = (MiniGame as ShootingRangeMiniGame).PlayerComponent.Weapon;
+            var weapon = MiniGame.PlayerComponent.Weapon;
             weapon.AmmoChanged -= OnAmmoChanged;
         }
     }

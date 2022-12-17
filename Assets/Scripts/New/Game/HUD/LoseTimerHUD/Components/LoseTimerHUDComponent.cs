@@ -1,4 +1,4 @@
-public class LoseTimerHUDComponent : HUDComponent
+public class LoseTimerHUDComponent<T> : HUDComponent<T> where T : MiniGame
 {
     protected override HUD CreateController(HUDManager hudManager)
     {

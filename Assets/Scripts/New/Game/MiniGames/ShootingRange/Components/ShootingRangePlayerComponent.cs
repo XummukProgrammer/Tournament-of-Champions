@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootingRangePlayerComponent : GameComponent
+public class ShootingRangePlayerComponent : GameComponent<ShootingRangeMiniGame>
 {
     [SerializeField] private WeaponAsset _weaponAsset;
 
@@ -39,9 +39,7 @@ public class ShootingRangePlayerComponent : GameComponent
     {
         if (_weapon.TryShot())
         {
-            var miniGame = MiniGame as ShootingRangeMiniGame;
-
-            var (targetController, targetZoneBehaviour) = miniGame.GetTargetInMouseArea(CursorPosition);
+            var (targetController, targetZoneBehaviour) = MiniGame.GetTargetInMouseArea(CursorPosition);
 
             if (targetController != null && targetZoneBehaviour != null)
             {
@@ -52,7 +50,7 @@ public class ShootingRangePlayerComponent : GameComponent
 
                 if (targetController.IsDied())
                 {
-                    miniGame.LevelComponent.DestroyTarget(targetController);
+                    MiniGame.LevelComponent.DestroyTarget(targetController);
                 }
             }
         }

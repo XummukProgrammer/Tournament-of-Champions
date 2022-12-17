@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootingRangeLevelComponent : GameComponent
+public class ShootingRangeLevelComponent : GameComponent<ShootingRangeMiniGame>
 {
     public System.Action Passed;
 
@@ -37,6 +37,6 @@ public class ShootingRangeLevelComponent : GameComponent
 
     private void OnLevelWin()
     {
-        (MiniGame as ShootingRangeMiniGame).OnLevelWin();
+        MiniGame.OnLevelWin();
     }
 }

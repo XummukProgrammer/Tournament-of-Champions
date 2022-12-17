@@ -1,4 +1,4 @@
-public class CoinHUDComponent : HUDComponent
+public class CoinHUDComponent<T> : HUDComponent<T> where T : MiniGame
 {
     protected override HUD CreateController(HUDManager hudManager)
     {

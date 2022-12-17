@@ -1,9 +1,9 @@
-public class ShootingRangeCoinHUDComponent : CoinHUDComponent
+public class ShootingRangeCoinHUDComponent : CoinHUDComponent<ShootingRangeMiniGame>
 {
     protected override void OnInit()
     {
         base.OnInit();
 
-        SetScoreAttribute((MiniGame as ShootingRangeMiniGame).PlayerComponent.ScoreAttribute);
+        SetScoreAttribute(MiniGame.PlayerComponent.ScoreAttribute);
     }
 }

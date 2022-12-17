@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class GameComponents : MonoBehaviour
 {
-    private GameComponent[] _components;
+    private BaseGameComponent[] _components;
 
     private MiniGame _miniGame;
 
     public void Init(MiniGame miniGame)
     {
         _miniGame = miniGame;
-        _components = GetComponentsInChildren<GameComponent>();
+        _components = GetComponentsInChildren<BaseGameComponent>();
 
         foreach (var component in _components)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WindowComponent : GameComponent
+public class WindowComponent<T> : GameComponent<T> where T : MiniGame
 {
     [SerializeField] private WindowBehaviour _prefab;
 

@@ -1,4 +1,4 @@
-public class LoseWindowComponent : WindowComponent
+public class LoseWindowComponent : WindowComponent<ShootingRangeMiniGame>
 {
     protected override Window CreateController(WindowManager windowManager)
     {

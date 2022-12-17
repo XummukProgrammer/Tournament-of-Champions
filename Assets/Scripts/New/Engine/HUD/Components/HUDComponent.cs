@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HUDComponent : GameComponent
+public class HUDComponent<T> : GameComponent<T> where T : MiniGame
 {
     [SerializeField] private HUDLocation _location;
     [SerializeField] private HUDBehaviour _prefab;

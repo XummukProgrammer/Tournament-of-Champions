@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class WeaponHUDComponent : HUDComponent
+public class WeaponHUDComponent<T> : HUDComponent<T> where T : MiniGame
 {
     protected override HUD CreateController(HUDManager hudManager)
     {

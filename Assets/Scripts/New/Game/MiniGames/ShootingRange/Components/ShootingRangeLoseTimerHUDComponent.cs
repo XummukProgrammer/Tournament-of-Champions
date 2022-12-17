@@ -1,4 +1,4 @@
-public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent
+public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent<ShootingRangeMiniGame>
 {
     protected override void OnInit()
     {
@@ -14,6 +14,6 @@ public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent
 
     private void UpdateTimer()
     {
-        SetTimer((MiniGame as ShootingRangeMiniGame).LoseTimerComponent.LoseTime);
+        SetTimer(MiniGame.LoseTimerComponent.LoseTime);
     }
 }
