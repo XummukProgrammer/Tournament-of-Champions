@@ -1,4 +1,4 @@
-public class WinWindowComponent : WindowComponent<ShootingRangeMiniGame>
+public class WinWindowComponent<T> : WindowComponent<T> where T : MiniGame
 {
     protected override Window CreateController(WindowManager windowManager)
     {
