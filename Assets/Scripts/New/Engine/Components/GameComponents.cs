@@ -24,4 +24,12 @@ public class GameComponents : MonoBehaviour
             component.Deinit();
         }
     }
+
+    public void OnUpdate()
+    {
+        foreach (var component in _components)
+        {
+            component.OnUpdate();
+        }
+    }
 }

@@ -24,7 +24,7 @@ public class ShootingRangePlayerComponent : GameComponent
         OnWeaponAccuracyChanged(_weapon.CurrentAccuracyOffset);
     }
 
-    public void Update()
+    public override void OnUpdate()
     {
         _weapon.Update();
         UpdateCursorPosition();
@@ -52,7 +52,7 @@ public class ShootingRangePlayerComponent : GameComponent
 
                 if (targetController.IsDied())
                 {
-                    miniGame.DestroyTarget(targetController);
+                    miniGame.LevelComponent.DestroyTarget(targetController);
                 }
             }
         }

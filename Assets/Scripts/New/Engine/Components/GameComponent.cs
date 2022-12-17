@@ -19,4 +19,5 @@ public class GameComponent : MonoBehaviour
 
     protected virtual void OnInit() { }
     protected virtual void OnDeinit() { }
+    public virtual void OnUpdate() { }
 }

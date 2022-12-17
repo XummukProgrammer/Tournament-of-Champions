@@ -18,7 +18,7 @@ public class ShootingRangeLoseTimerComponent : GameComponent
         _loseTime = _startTime;
     }
 
-    public void Update()
+    public override void OnUpdate()
     {
         _loseTime -= Time.deltaTime;
 

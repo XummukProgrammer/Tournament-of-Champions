@@ -7,7 +7,7 @@ public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent
         UpdateTimer();
     }
 
-    public void Update()
+    public override void OnUpdate()
     {
         UpdateTimer();
     }

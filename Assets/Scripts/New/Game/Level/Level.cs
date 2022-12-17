@@ -9,20 +9,30 @@ public class Level
     private LevelWave _levelWave = new LevelWave();
     private int _currentWave;
 
+    private bool _isInited = false;
+
     public void Init(LevelAsset asset)
     {
         _asset = asset;
+        _isInited = true;
 
         TryChangeWave(0);
     }
 
     public void Deinit()
     {
+        _isInited = false;
+
         _levelWave.Deinit();
     }
 
     public void Update()
     {
+        if (!_isInited)
+        {
+            return;
+        }
+
         if (_levelWave.IsEnded())
         {
             WaveChanged?.Invoke(_currentWave);

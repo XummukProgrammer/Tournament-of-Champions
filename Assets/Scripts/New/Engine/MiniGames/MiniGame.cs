@@ -28,6 +28,7 @@ public class MiniGame
     public void Update()
     {
         OnUpdate();
+        _components.OnUpdate();
 
         switch (_state)
         {
