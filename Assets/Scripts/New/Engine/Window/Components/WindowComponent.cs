@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class WindowComponent<T> : GameComponent<T> where T : MiniGame
+public class WindowComponent<TController, TMiniGame> : GameComponent<TMiniGame> 
+    where TMiniGame : MiniGame
+    where TController : Window
 {
     [SerializeField] private WindowBehaviour _prefab;
 
-    private Window _controller;
+    private TController _controller;
 
     public WindowBehaviour Prefab => _prefab;
-    public Window Controller => _controller;
+    public TController Controller => _controller;
 
     protected override void OnInit()
     {
@@ -28,7 +30,11 @@ public class WindowComponent<T> : GameComponent<T> where T : MiniGame
         OnHide();
     }
 
-    protected virtual Window CreateController(WindowManager windowManager) { return null; }
+    private TController CreateController(WindowManager windowManager) 
+    { 
+        return windowManager.CreateAndAddController<TController>(Prefab); 
+    }
+
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
 }
