@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c060b1ec87326bb41b4d83fd4b0bb0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 100
+  _startTime: 5
 --- !u!1 &612395957152775895
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7590818299431253197}
-  - component: {fileID: 2791734495831329117}
+  - component: {fileID: 5608828096145679709}
   m_Layer: 0
   m_Name: LoseWindow
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Transform:
   m_Father: {fileID: 3341328485983146364}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2791734495831329117
+--- !u!114 &5608828096145679709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258326268823580327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5430d2689515906448954bd26a6276d2, type: 3}
+  m_Script: {fileID: 11500000, guid: d46b1f28f1f5be142b021bf2607ab37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4237558464766282064, guid: 31f01cbdd2e6a574d9d26174b2da3efb, type: 3}
