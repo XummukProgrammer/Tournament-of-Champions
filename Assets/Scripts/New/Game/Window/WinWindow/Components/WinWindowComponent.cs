@@ -4,4 +4,9 @@ public class WinWindowComponent<T> : WindowComponent<T> where T : MiniGame
     {
         return windowManager.CreateAndAddController<WinWindow>(Prefab);
     }
+
+    protected void OnGameWin()
+    {
+        (Controller as WinWindow).GameWin();
+    }
 }

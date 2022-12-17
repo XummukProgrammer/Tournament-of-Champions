@@ -13,9 +13,4 @@ public class ShootingRangeWinWindowComponent : WinWindowComponent<ShootingRangeM
 
         MiniGame.Winned -= OnGameWin;
     }
-
-    private void OnGameWin()
-    {
-        (Controller as WinWindow).GameWin();
-    }
 }
