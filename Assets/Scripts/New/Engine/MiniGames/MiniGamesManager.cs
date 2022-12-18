@@ -43,6 +43,8 @@ public class MiniGamesManager
     {
         miniGame.Init(_entryPoint, components);
         _miniGames.Add(miniGame);
+
+        miniGame.PostInit();
     }
 
     public T GetMiniGame<T>() where T : MiniGame

@@ -17,6 +17,14 @@ public class GameComponents : MonoBehaviour
         }
     }
 
+    public void PostInit()
+    {
+        foreach (var component in _components)
+        {
+            component.PostInit();
+        }
+    }
+
     public void Deinit()
     {
         foreach (var component in _components)

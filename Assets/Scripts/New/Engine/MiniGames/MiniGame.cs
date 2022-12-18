@@ -18,6 +18,12 @@ public class MiniGame
         OnInit();
     }
 
+    public void PostInit()
+    {
+        _components.PostInit();
+        OnPostInit();
+    }
+
     public void Deinit()
     {
         OnDeinit();
@@ -123,6 +129,7 @@ public class MiniGame
     }
     
     protected virtual void OnInit() { }
+    protected virtual void OnPostInit() { }
     protected virtual void OnDeinit() { }
     protected virtual void OnUpdate() { }
 

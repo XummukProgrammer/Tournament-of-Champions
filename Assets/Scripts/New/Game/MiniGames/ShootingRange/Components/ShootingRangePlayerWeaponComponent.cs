@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Weapon
+public class ShootingRangePlayerWeaponComponent : GameComponent<ShootingRangeMiniGame>
 {
     public System.Action<int> AmmoChanged;
     public System.Action<Vector2> AccuracyChanged;
+
+    [SerializeField] private WeaponAsset _asset;
 
     private string _id;
     private int _damage;
@@ -24,27 +26,25 @@ public class Weapon
     public int CurrentAmmo => _currentAmmo;
     public Vector2 CurrentAccuracyOffset => _accuracyOffsets[_currentAccuracyOffsetIndex];
 
-    public void Init(string id, int damage, int ammo, float reloadDelay, WeaponAccuracyBehaviour accuracyBehaviour, float accuracyChangeDelay)
+    protected override void OnInit()
     {
-        _id = id;
-        _damage = damage;
-        _ammo = ammo;
-        _reloadDelay = reloadDelay;
+        base.OnInit();
+
+        _id = _asset.Id;
+        _damage = _asset.Damage;
+        _ammo = _asset.Ammo;
+        _reloadDelay = _asset.ReloadDelay;
         _currentReloadDelay = 0f;
 
         _currentAccuracyOffsetIndex = 0;
-        _accuracyChangeDelay = accuracyChangeDelay;
+        _accuracyChangeDelay = _asset.AccuracyChangeDelay;
         _accuracyChangeTime = _accuracyChangeDelay;
-
-        var accuracyObject = GameObject.Instantiate(accuracyBehaviour);
-        accuracyObject.transform.position = Vector3.zero;
-        _accuracyOffsets = accuracyObject.GetPoints();
-        GameObject.Destroy(accuracyObject.gameObject);
+        _accuracyOffsets = _asset.AccuracyBehaviour.GetPoints();
 
         OnReloaded();
     }
 
-    public void Update()
+    public override void OnUpdate()
     {
         float deltaTime = Time.deltaTime;
 

@@ -1,8 +1,8 @@
 public class ShootingRangeLoseWindowComponent : LoseWindowComponent<ShootingRangeMiniGame>
 {
-    protected override void OnInit()
+    protected override void OnPostInit()
     {
-        base.OnInit();
+        base.OnPostInit();
 
         MiniGame.Losed += OnGameLose;
     }

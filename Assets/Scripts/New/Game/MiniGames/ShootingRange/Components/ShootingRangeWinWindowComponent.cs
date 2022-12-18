@@ -1,8 +1,8 @@
 public class ShootingRangeWinWindowComponent : WinWindowComponent<ShootingRangeMiniGame>
 {
-    protected override void OnInit()
+    protected override void OnPostInit()
     {
-        base.OnInit();
+        base.OnPostInit();
 
         MiniGame.Winned += OnGameWin;
     }

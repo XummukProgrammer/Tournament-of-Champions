@@ -1,8 +1,8 @@
 public class ShootingRangeLoseTimerHUDComponent : LoseTimerHUDComponent<ShootingRangeMiniGame>
 {
-    protected override void OnInit()
+    protected override void OnPostInit()
     {
-        base.OnInit();
+        base.OnPostInit();
 
         UpdateTimer();
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Target : IController, IShotable
+public class Target : IController
 {
     private TargetBehaviour _prefab;
     private Vector3 _position;

@@ -9,10 +9,12 @@ public class ShootingRangeMiniGame : MiniGame
     private bool _isLevelWin = false;
 
     private ShootingRangePlayerComponent _playerComponent;
+    private ShootingRangePlayerWeaponComponent _playerWeaponComponent;
     private ShootingRangeLevelComponent _levelComponent;
     private ShootingRangeLoseTimerComponent _loseTimerComponent;
 
     public ShootingRangePlayerComponent PlayerComponent => GetPlayerComponent();
+    public ShootingRangePlayerWeaponComponent PlayerWeaponComponent => GetPlayerWeaponComponent();
     public ShootingRangeLevelComponent LevelComponent => GetLevelComponent();
     public ShootingRangeLoseTimerComponent LoseTimerComponent => GetLoseTimerComponent();
 
@@ -140,6 +142,15 @@ public class ShootingRangeMiniGame : MiniGame
             _playerComponent = Components.GetComponentInChildren<ShootingRangePlayerComponent>();
         }
         return _playerComponent;
+    }
+
+    private ShootingRangePlayerWeaponComponent GetPlayerWeaponComponent()
+    {
+        if (_playerWeaponComponent == null)
+        {
+            _playerWeaponComponent = Components.GetComponentInChildren<ShootingRangePlayerWeaponComponent>();
+        }
+        return _playerWeaponComponent;
     }
 
     private ShootingRangeLevelComponent GetLevelComponent()

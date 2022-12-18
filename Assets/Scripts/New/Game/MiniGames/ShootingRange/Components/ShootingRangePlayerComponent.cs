@@ -4,7 +4,6 @@ public class ShootingRangePlayerComponent : GameComponent<ShootingRangeMiniGame>
 {
     [SerializeField] private WeaponAsset _weaponAsset;
 
-    private Weapon _weapon = new Weapon();
     private ScoreAttribute _scoreAttribute = new ScoreAttribute();
     private CursorBehaviour _cursorBehaviour;
 
@@ -13,20 +12,19 @@ public class ShootingRangePlayerComponent : GameComponent<ShootingRangeMiniGame>
 
     public Vector3 CursorPosition => _cursorPosition;
     public ScoreAttribute ScoreAttribute => _scoreAttribute;
-    public Weapon Weapon => _weapon;
 
-    protected override void OnInit()
+    protected override void OnPostInit()
     {
-        _weapon.Init(_weaponAsset.Id, _weaponAsset.Damage, _weaponAsset.Ammo, _weaponAsset.ReloadDelay, _weaponAsset.AccuracyBehaviour, _weaponAsset.AccuracyChangeDelay);
-        _weapon.AccuracyChanged += OnWeaponAccuracyChanged;
+        base.OnPostInit();
+
         _cursorBehaviour = MiniGame.EntryPoint.CursorBehaviour;
 
-        OnWeaponAccuracyChanged(_weapon.CurrentAccuracyOffset);
+        MiniGame.PlayerWeaponComponent.AccuracyChanged += OnWeaponAccuracyChanged;
+        OnWeaponAccuracyChanged(MiniGame.PlayerWeaponComponent.CurrentAccuracyOffset);
     }
 
     public override void OnUpdate()
     {
-        _weapon.Update();
         UpdateCursorPosition();
 
         if (Input.GetMouseButtonDown(0))
@@ -37,13 +35,13 @@ public class ShootingRangePlayerComponent : GameComponent<ShootingRangeMiniGame>
 
     private void Shot()
     {
-        if (_weapon.TryShot())
+        if (MiniGame.PlayerWeaponComponent.TryShot())
         {
             var (targetController, targetZoneBehaviour) = MiniGame.GetTargetInMouseArea(CursorPosition);
 
             if (targetController != null && targetZoneBehaviour != null)
             {
-                targetController.Hit(_weapon.Damage);
+                targetController.Hit(MiniGame.PlayerWeaponComponent.Damage);
 
                 int scoreWithZone = targetController.GetScoreWithZone(targetZoneBehaviour.ZoneId);
                 _scoreAttribute.GiveValue(scoreWithZone);
