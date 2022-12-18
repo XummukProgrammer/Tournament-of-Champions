@@ -5,6 +5,7 @@ public class ShootingRangeMiniGame : MiniGame
     public System.Action<int> LevelChanged;
     public System.Action Winned;
     public System.Action Losed;
+    public System.Action<Target, int, bool> PlayerHitTarget;
 
     private bool _isLevelWin = false;
 
@@ -174,5 +175,10 @@ public class ShootingRangeMiniGame : MiniGame
     public void OnLevelWin()
     {
         _isLevelWin = true;
+    }
+
+    public void OnPlayerHitTarget(Target target, int damage)
+    {
+        PlayerHitTarget?.Invoke(target, damage, target.IsDied());
     }
 }

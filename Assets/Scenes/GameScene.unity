@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33438000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33438001}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &33438001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33438000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111475828
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,13 +309,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 519420031}
   _cursorBehaviour: {fileID: 1577459490}
-  _yaAdsBehaviour: {fileID: 0}
-  _yaPurchasesBehaviour: {fileID: 0}
   _miniGameEntryBehaviours:
   - {fileID: 4190365298656005531, guid: 5c86b699e35d1244e8f5935fa89504dc, type: 3}
   _startMiniGameId: ShootingRange
   _hudContainerBehaviour: {fileID: 111475830}
   _windowContainer: {fileID: 1142958585}
+  _soundsContainer: {fileID: 33438001}
+  _baseAudioSource: {fileID: 1394258367774001380, guid: c7bc7fcffc0f709408e033909c13561f, type: 3}
 --- !u!4 &361338018
 Transform:
   m_ObjectHideFlags: 0

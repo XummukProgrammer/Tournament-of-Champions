@@ -10,6 +10,7 @@ public class EntryPoint
     private WindowManager _windowManager = new WindowManager();
     private ActionsQueue _actionsQueue = new ActionsQueue();
     private MiniGamesManager _miniGamesManager = new MiniGamesManager();
+    private SoundsManager _soundsManager = new SoundsManager();
 
     private BaseMiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     private string _startMiniGameId;
@@ -22,12 +23,14 @@ public class EntryPoint
     public ActionsQueue ActonsQueue => _actionsQueue;
     public MiniGamesManager MiniGamesManager => _miniGamesManager;
     public MiniGame CurrentMiniGame => _currentMiniGame;
+    public SoundsManager SoundsManager => _soundsManager;
     public CursorBehaviour CursorBehaviour => _cursorBehaviour;
     public bool IsDisabled => _isDisabled;
 
     public void Init(Camera camera, CursorBehaviour cursorBehaviour,
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
-        BaseMiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId)
+        BaseMiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId,
+        Transform soundsContainer, AudioSource baseAudioSource)
     {
         Cursor.visible = false;
 
@@ -40,6 +43,7 @@ public class EntryPoint
         _windowManager.Init(this, windowContainer);
         _miniGamesManager.Init(this);
         _actionsQueue.Init(this);
+        _soundsManager.Init(soundsContainer, baseAudioSource);
 
         StartMiniGame(_startMiniGameId);
     }
@@ -50,6 +54,7 @@ public class EntryPoint
         _windowManager.Deinit();
         _actionsQueue.Deinit();
         _miniGamesManager.Deinit();
+        _soundsManager.Deinit();
     }
 
     public void Update()
@@ -58,6 +63,7 @@ public class EntryPoint
         _windowManager.Update();
         _actionsQueue.Update();
         _miniGamesManager.Update();
+        _soundsManager.Update();
     }
 
     public Vector3 GetMousePosition()

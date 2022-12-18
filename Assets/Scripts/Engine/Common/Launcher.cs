@@ -12,6 +12,9 @@ public class Launcher : MonoBehaviour
     [SerializeField] private HUDContainerBehaviour _hudContainerBehaviour;
     [SerializeField] private Transform _windowContainer;
 
+    [SerializeField] private Transform _soundsContainer;
+    [SerializeField] private AudioSource _baseAudioSource;
+
     private EntryPoint _entryPoint = new EntryPoint();
 
     private void OnEnable()
@@ -19,7 +22,8 @@ public class Launcher : MonoBehaviour
         _entryPoint.Init(_camera, 
             _cursorBehaviour,
             _hudContainerBehaviour, _windowContainer, 
-            _miniGameEntryBehaviours, _startMiniGameId);
+            _miniGameEntryBehaviours, _startMiniGameId,
+            _soundsContainer, _baseAudioSource);
     }
 
     private void OnDisable()
