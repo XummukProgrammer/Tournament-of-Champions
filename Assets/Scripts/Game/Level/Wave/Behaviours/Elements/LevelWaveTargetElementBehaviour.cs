@@ -7,8 +7,7 @@ public class LevelWaveTargetElementBehaviour : LevelWaveElementBehaviour
     public override IController CreateController()
     {
         Target controller = new Target();
-        controller.InitWithParams(_asset.Id, _asset.Prefab, transform.position, 
-            _asset.ExplosionSound, 
+        controller.InitWithParams(_asset.Id, _asset.Prefab, transform.position,
             _asset.HitParticle, _asset.HealthValue, _asset.ZoneScores);
         return controller;
     }
