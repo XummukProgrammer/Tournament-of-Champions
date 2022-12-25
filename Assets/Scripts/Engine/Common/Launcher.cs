@@ -15,6 +15,8 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Transform _soundsContainer;
     [SerializeField] private AudioSource _baseAudioSource;
 
+    [SerializeField] private Transform _effectsContainer;
+
     private EntryPoint _entryPoint = new EntryPoint();
 
     private void OnEnable()
@@ -23,7 +25,8 @@ public class Launcher : MonoBehaviour
             _cursorBehaviour,
             _hudContainerBehaviour, _windowContainer, 
             _miniGameEntryBehaviours, _startMiniGameId,
-            _soundsContainer, _baseAudioSource);
+            _soundsContainer, _baseAudioSource,
+            _effectsContainer);
     }
 
     private void OnDisable()

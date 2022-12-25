@@ -11,6 +11,7 @@ public class EntryPoint
     private ActionsQueue _actionsQueue = new ActionsQueue();
     private MiniGamesManager _miniGamesManager = new MiniGamesManager();
     private SoundsManager _soundsManager = new SoundsManager();
+    private EffectsManager _effectsManager = new EffectsManager();
 
     private BaseMiniGameEntryBehaviour[] _miniGameEntryBehaviours;
     private string _startMiniGameId;
@@ -24,13 +25,15 @@ public class EntryPoint
     public MiniGamesManager MiniGamesManager => _miniGamesManager;
     public MiniGame CurrentMiniGame => _currentMiniGame;
     public SoundsManager SoundsManager => _soundsManager;
+    public EffectsManager EffectsManager => _effectsManager;
     public CursorBehaviour CursorBehaviour => _cursorBehaviour;
     public bool IsDisabled => _isDisabled;
 
     public void Init(Camera camera, CursorBehaviour cursorBehaviour,
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
         BaseMiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId,
-        Transform soundsContainer, AudioSource baseAudioSource)
+        Transform soundsContainer, AudioSource baseAudioSource,
+        Transform effectsContainer)
     {
         Cursor.visible = false;
 
@@ -44,7 +47,9 @@ public class EntryPoint
         _miniGamesManager.Init(this);
         _actionsQueue.Init(this);
         _soundsManager.Init(soundsContainer, baseAudioSource);
+        _effectsManager.Init(this, effectsContainer);
 
+        // TODO: Разделить игровую логику на Core и Meta!
         StartMiniGame(_startMiniGameId);
     }
 
@@ -55,6 +60,7 @@ public class EntryPoint
         _actionsQueue.Deinit();
         _miniGamesManager.Deinit();
         _soundsManager.Deinit();
+        _effectsManager.Deinit();
     }
 
     public void Update()
@@ -64,6 +70,7 @@ public class EntryPoint
         _actionsQueue.Update();
         _miniGamesManager.Update();
         _soundsManager.Update();
+        _effectsManager.Update();
     }
 
     public Vector3 GetMousePosition()
