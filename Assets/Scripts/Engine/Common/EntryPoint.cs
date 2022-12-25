@@ -33,7 +33,7 @@ public class EntryPoint
         HUDContainerBehaviour hudContainerBehaviour, Transform windowContainer,
         BaseMiniGameEntryBehaviour[] miniGameEntryBehaviours, string startMiniGameId,
         Transform soundsContainer, AudioSource baseAudioSource,
-        Transform effectsContainer)
+        Transform worldEffectsContainer, Transform canvasEffectsContainer)
     {
         Cursor.visible = false;
 
@@ -47,7 +47,7 @@ public class EntryPoint
         _miniGamesManager.Init(this);
         _actionsQueue.Init(this);
         _soundsManager.Init(soundsContainer, baseAudioSource);
-        _effectsManager.Init(this, effectsContainer);
+        _effectsManager.Init(this, worldEffectsContainer, canvasEffectsContainer);
 
         // TODO: Разделить игровую логику на Core и Meta!
         StartMiniGame(_startMiniGameId);

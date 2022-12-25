@@ -41,12 +41,13 @@ public class ShootingRangePlayerComponent : GameComponent<ShootingRangeMiniGame>
 
             if (targetController != null && targetZoneBehaviour != null)
             {
-                int damage = MiniGame.PlayerWeaponComponent.Damage;
-                targetController.Hit(damage);
-                MiniGame.OnPlayerHitTarget(targetController, damage);
-
                 int scoreWithZone = targetController.GetScoreWithZone(targetZoneBehaviour.ZoneId);
                 _scoreAttribute.GiveValue(scoreWithZone);
+
+                int damage = MiniGame.PlayerWeaponComponent.Damage;
+                targetController.Hit(damage);
+                MiniGame.OnPlayerHitTarget(targetController, damage, scoreWithZone);
+                
 
                 if (targetController.IsDied())
                 {

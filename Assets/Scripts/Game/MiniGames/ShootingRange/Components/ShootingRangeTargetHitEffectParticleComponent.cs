@@ -15,7 +15,7 @@ public class ShootingRangeTargetHitEffectParticleComponent : ParticleEffectCompo
         Destroy();
     }
 
-    private void OnPlayerHitTarget(Target target, int damage, bool isDied)
+    private void OnPlayerHitTarget(Target target, int damage, bool isDied, int addCoinValue)
     {
         Play(target.Behaviour.gameObject.transform);
     }

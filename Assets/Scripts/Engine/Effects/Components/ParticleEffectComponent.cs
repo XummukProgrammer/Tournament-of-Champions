@@ -13,7 +13,7 @@ public class ParticleEffectComponent<T> : GameComponent<T> where T : MiniGame
         _particleEffect = MiniGame.EntryPoint.EffectsManager.CreateAndAddEffect<ParticleEffect>((ParticleEffect effect) =>
         {
             effect.SetParticlePrefab(_prefab);
-        });
+        }, EffectContainerType.World);
     }
 
     protected override void OnDeinit()

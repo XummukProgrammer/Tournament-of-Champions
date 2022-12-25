@@ -1,8 +1,8 @@
-public class ShootingRangeTargetExplosionSoundsComponent : RandomPlaySoundsComponent<ShootingRangeMiniGame>
+public class ShootingRangeAddCoinEffectComponent : AddValueEffectComponent<ShootingRangeMiniGame>
 {
-    protected override void OnInit()
+    protected override void OnPostInit()
     {
-        base.OnInit();
+        base.OnPostInit();
 
         MiniGame.PlayerHitTarget += OnPlayerHitTarget;
     }
@@ -16,9 +16,6 @@ public class ShootingRangeTargetExplosionSoundsComponent : RandomPlaySoundsCompo
 
     private void OnPlayerHitTarget(Target target, int damage, bool isDied, int addCoinValue)
     {
-        if (isDied)
-        {
-            PlayRandonSound(target.Id);
-        }
+        Play(target.Behaviour.transform, addCoinValue);
     }
 }

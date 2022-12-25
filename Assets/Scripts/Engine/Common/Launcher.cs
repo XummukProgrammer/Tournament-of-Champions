@@ -15,7 +15,8 @@ public class Launcher : MonoBehaviour
     [SerializeField] private Transform _soundsContainer;
     [SerializeField] private AudioSource _baseAudioSource;
 
-    [SerializeField] private Transform _effectsContainer;
+    [SerializeField] private Transform _worldEffectsContainer;
+    [SerializeField] private Transform _canvasEffectsContainer;
 
     private EntryPoint _entryPoint = new EntryPoint();
 
@@ -26,7 +27,7 @@ public class Launcher : MonoBehaviour
             _hudContainerBehaviour, _windowContainer, 
             _miniGameEntryBehaviours, _startMiniGameId,
             _soundsContainer, _baseAudioSource,
-            _effectsContainer);
+            _worldEffectsContainer, _canvasEffectsContainer);
     }
 
     private void OnDisable()

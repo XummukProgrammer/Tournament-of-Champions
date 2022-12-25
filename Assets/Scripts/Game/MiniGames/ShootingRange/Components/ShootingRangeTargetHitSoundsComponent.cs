@@ -16,7 +16,7 @@ public class ShootingRangeTargetHitSoundsComponent : RandomPlaySoundsComponent<S
         MiniGame.PlayerHitTarget -= OnPlayerHitTarget;
     }
 
-    private void OnPlayerHitTarget(Target target, int damage, bool isDied)
+    private void OnPlayerHitTarget(Target target, int damage, bool isDied, int addCoinValue)
     {
         PlayRandonSound(target.Id);
     }
