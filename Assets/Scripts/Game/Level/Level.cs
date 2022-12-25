@@ -11,10 +11,14 @@ public class Level
 
     private bool _isInited = false;
 
-    public void Init(LevelAsset asset)
+    private ShootingRangeLoseTimerComponent _loseTimerComponent;
+
+    public void Init(LevelAsset asset, ShootingRangeLoseTimerComponent loseTimerComponent)
     {
         _asset = asset;
         _isInited = true;
+
+        _loseTimerComponent = loseTimerComponent;
 
         TryChangeWave(0);
     }
@@ -58,6 +62,8 @@ public class Level
 
         var waveBehaviour = _asset.WaveBehaviours[index];
         _levelWave.Init(waveBehaviour);
+
+        _loseTimerComponent.AddTime(waveBehaviour.Info.EntryAddTime);
 
         return true;
     }

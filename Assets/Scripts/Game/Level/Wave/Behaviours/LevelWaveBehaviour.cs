@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class LevelWaveBehaviour : MonoBehaviour
 {
+    [SerializeField] private LevelInfo _info;
+
+    public LevelInfo Info => _info;
+
     public List<LevelWaveElementBehaviour> GetElements()
     {
         List<LevelWaveElementBehaviour> elements = new List<LevelWaveElementBehaviour>();

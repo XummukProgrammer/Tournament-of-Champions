@@ -12,7 +12,7 @@ public class ShootingRangeLevelComponent : GameComponent<ShootingRangeMiniGame>
 
     public void Load()
     {
-        _level.Init(_asset);
+        _level.Init(_asset, MiniGame.LoseTimerComponent);
 
         _level.Ended += OnLevelWin;
     }
